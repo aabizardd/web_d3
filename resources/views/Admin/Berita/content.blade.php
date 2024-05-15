@@ -23,7 +23,7 @@
 
 
 
-                        <i class="feather icon-user bg-c-blue"></i>
+                        <i class="fas fa-newspaper bg-c-blue"></i>
                         <div class="d-inline">
 
                             @if (!isset($_GET['page']))
