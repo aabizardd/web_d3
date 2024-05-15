@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('foto');
-            $table->text('isi');
+            $table->longText('isi');
             $table->dateTime('tanggal');
 
             // $table->dateTime('tanggal');

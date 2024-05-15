@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+
 
 class BeritaController extends Controller
 {
@@ -14,7 +16,16 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        return view('Admin.Berita.content');
+
+        $data = [
+            'all_berita' => Berita::all()
+        ];
+
+        if(isset($_GET['id'])){
+            $data['bt'] = Berita::find($_GET['id']);
+        }
+
+        return view('Admin.Berita.content', $data);
     }
 
     /**
@@ -78,16 +89,61 @@ class BeritaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Berita $berita)
+    public function update(Request $request, $id)
     {
-        //
+        // Validasi input
+        $validator = Validator::make($request->all(), [
+            'judul' => 'required|string|max:255',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Maksimum 2MB
+            'isi' => 'required|string',
+        ]);
+
+        // Jika validasi gagal
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Temukan berita berdasarkan ID
+        $post = Berita::findOrFail($id);
+
+        // Update judul dan isi berita
+        $post->judul = $request->judul;
+        $post->isi = $request->isi;
+
+        // Update foto jika diunggah
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama
+            Storage::delete($post->foto);
+
+            // Simpan foto baru
+            $fotoPath = $request->file('foto')->store('public/foto');
+            $post->foto = $fotoPath;
+        }
+
+        // Simpan perubahan
+        $post->save();
+
+        // Redirect ke halaman lain dengan pesan sukses
+        return redirect()->route('admin.berita')->with('success', 'Berita berhasil diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Berita $berita)
+    public function destroy($id)
     {
-        //
+         // Temukan berita berdasarkan ID
+         $post = Berita::findOrFail($id);
+
+         // Hapus foto dari penyimpanan
+         Storage::delete($post->foto);
+ 
+         // Hapus berita dari database
+         $post->delete();
+ 
+         // Redirect ke halaman lain dengan pesan sukses
+         return redirect()->route('admin.berita')->with('success', 'Berita berhasil dihapus');
     }
 }

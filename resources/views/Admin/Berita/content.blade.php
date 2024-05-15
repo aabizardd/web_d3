@@ -37,10 +37,10 @@
                                     <span>
                                         Tambah data berita / kegiatan Deputi 3 di sini.
                                     </span>
-                                @elseif ($_GET['page'] == 'ubah_pengguna')
-                                    <h5>Ubah Pengguna Aplikasi</h5>
+                                @elseif ($_GET['page'] == 'ubah_berita')
+                                    <h5>Ubah Berita / Kegiatan</h5>
                                     <span>
-                                        Ubah data akun pengguna pemakai Aplikasi anda di sini.
+                                        Ubah data berita / kegiatan Deputi 3 di sini.
                                     </span>
                                 @endif
                             @endif
@@ -69,10 +69,10 @@
                                     <li class="breadcrumb-items">
                                         <a href="">Tambah Berita</a>
                                     </li>
-                                @elseif ($_GET['page'] == 'ubah_pengguna')
+                                @elseif ($_GET['page'] == 'ubah_berita')
                                     &nbsp;/&nbsp;
                                     <li class="breadcrumb-items">
-                                        <a href="">Ubah Pengguna</a>
+                                        <a href="">Ubah Berita</a>
                                     </li>
                                 @endif
                             @endif
@@ -99,8 +99,8 @@
                         @else
                             @if ($_GET['page'] == 'tambah_berita')
                                 @include('Admin.Berita.tambah_berita')
-                                {{-- @elseif ($_GET['page'] == 'ubah_pengguna')
-                                @include('Admin.Pengguna.ubah_pengguna') --}}
+                            @elseif ($_GET['page'] == 'ubah_berita')
+                                @include('Admin.Berita.ubah_berita')
                             @endif
                         @endif
 

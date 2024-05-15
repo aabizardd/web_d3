@@ -7,23 +7,20 @@
 
     <div class="card-block">
 
-        <form action="{{ route('admin.berita') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.update_berita', $bt->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
 
-
-
                 <div class="col-lg-4">
 
-                    <img src="https://st4.depositphotos.com/17828278/24401/v/450/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg"
-                        alt="" width="100%" height="250" id="preview_img" class="mb-4"
-                        style="border-radius: 10px">
+                    <img src="{{ Storage::url($bt->foto) }}" alt="" width="100%" height="250" id="preview_img"
+                        class="mb-4" style="border-radius: 10px">
 
                     <div class="form-group mb-3">
                         <label for="">Foto Cover</label>
                         <input class="form-control @error('foto') is-invalid @enderror" type="file" name="foto"
-                            id="foto" placeholder="Foto" accept="image/png, image/gif, image/jpeg" required>
+                            id="foto" placeholder="Foto" accept="image/png, image/gif, image/jpeg">
 
                         @error('foto')
                             <div class="invalid-feedback">
@@ -35,7 +32,7 @@
                     <div class="form-group mb-3">
                         <label for="">Judul</label>
                         <input class="form-control @error('judul') is-invalid @enderror" type="text" name="judul"
-                            id="judul" placeholder="Judul" value="{{ old('judul') }}" required>
+                            id="judul" placeholder="Judul" value="{{ $bt->judul }}" required>
 
                         @error('judul')
                             <div class="invalid-feedback">
@@ -51,7 +48,7 @@
 
                     <div class="form-group mb-4">
                         <label>Isi Berita</label>
-                        <textarea name="isi" id="isi">{!! old('isi') !!}</textarea>
+                        <textarea name="isi" id="isi">{!! $bt->isi !!}</textarea>
                     </div>
 
 
@@ -62,7 +59,7 @@
             </div>
 
             <button class="btn btn-primary w-100">
-                Tambah Berita
+                Ubah Berita
             </button>
 
         </form>

@@ -52,6 +52,8 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
     //kelola berita
     Route::get('berita', [BeritaController::class, 'index'])->name('admin.berita');
     Route::post('berita', [BeritaController::class, 'store'])->name('admin.berita');
+    Route::post('update_berita/{id}', [BeritaController::class, 'update'])->name('admin.update_berita');
+    Route::get('hapus_berita/{id}', [BeritaController::class, 'destroy'])->name('admin.hapus_berita');
    
     //------
     

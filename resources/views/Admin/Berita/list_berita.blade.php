@@ -31,41 +31,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($pengguna as $item)
+                    @foreach ($all_berita as $item)
                         <tr>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->email }}</td>
-
                             <td>
-                                @if ($item->role == 1)
-                                    <span class="badge badge-success">Admin</span>
-                                @else
-                                    <span class="badge badge-primary">PIC Asdep</span>
-                                @endif
+                                <img src="{{ Storage::url($item->foto) }}" class="card-img" alt="{{ $item->foto }}"
+                                    style="width: 250px;height: 250px;">
                             </td>
+                            <td>{{ $item->judul }}</td>
+
+                            <td>{{ $item->user->name }}</td>
 
                             <td>
-                                @if ($item->role == 1)
-                                @else
-                                    <span class="badge badge-warning">
-                                        Asisten Deputi {{ $item->asdep }}
-                                    </span>
-                                @endif
-
+                                {{ $item->tanggal }}
 
                             </td>
 
                             <td>
-                                <a href="?page=ubah_pengguna&id={{ $item->id }}" class="btn btn-warning btn-sm">
+                                <a href="?page=ubah_berita&id={{ $item->id }}" class="btn btn-warning btn-sm">
                                     <i class="fas fa-pencil"></i> Edit
                                 </a>
 
-                                <a href="{{ route('admin.hapus_pengguna', $item->id) }}" class="btn btn-danger btn-sm">
+                                <a href="{{ route('admin.hapus_berita', $item->id) }}" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash"></i> Hapus
                                 </a>
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
 
             </table>
