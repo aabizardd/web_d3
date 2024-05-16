@@ -42,3 +42,28 @@ function asdep($angka)
 
     return $asdep;
 }
+
+function slugify($string)
+{
+    // Replace non letter or digits by "-"
+    $string = preg_replace('~[^\pL\d]+~u', '-', $string);
+
+    // Transliterate
+    $string = iconv('utf-8', 'us-ascii//TRANSLIT', $string);
+
+    // Remove unwanted characters
+    $string = preg_replace('~[^-\w]+~', '', $string);
+
+    // Trim
+    $string = trim($string, '-');
+
+    // Convert to lowercase
+    $string = strtolower($string);
+
+    // Check if empty after transformation
+    if (empty($string)) {
+        return 'n-a';
+    }
+
+    return $string;
+}

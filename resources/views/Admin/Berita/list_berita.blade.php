@@ -35,7 +35,7 @@
                         <tr>
                             <td>
                                 <img src="{{ Storage::url($item->foto) }}" class="card-img" alt="{{ $item->foto }}"
-                                    style="width: 250px;height: 250px;">
+                                    style="width: 100%;height: 300px;">
                             </td>
                             <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis;">{{ $item->judul }}
                             </td>

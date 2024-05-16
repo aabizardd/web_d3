@@ -16,6 +16,8 @@
         content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="colorlib" />
 
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
     {{-- Icon --}}
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/') }}template/assets/logo/logo-only.png" />

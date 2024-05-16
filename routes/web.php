@@ -30,7 +30,7 @@ Route::get('profil_deputi', [FrontEndController::class, 'profil_deputi'])->name(
 Route::get('struktur_organisasi', [FrontEndController::class, 'struktur_organisasi'])->name('struktur_organisasi');
 
 Route::get('berita', [FrontEndController::class, 'berita'])->name('berita');
-Route::get('berita/{id}', [FrontEndController::class, 'detail_berita'])->name('detail_berita');
+Route::get('berita/{id}/{slug}', [FrontEndController::class, 'detail_berita'])->name('detail_berita');
 
 Route::get('analisis_kebijakan', [FrontEndController::class, 'analisis_kebijakan'])->name('analisis_kebijakan');
 

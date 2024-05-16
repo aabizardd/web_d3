@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<!-- Mirrored from prium.github.io/elixir/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Feb 2024 06:10:42 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 
 <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!--  -->
     <!--    Document Title-->
     <!-- =============================================-->
@@ -15,6 +15,8 @@
         Deputi 3 - Deputi Bidang Koordinasi Pengembangan Usaha BUMN, Riset dan
         Inovasi
     </title>
+
+    @yield('addMeta')
     <!--  -->
     <!--    Favicons-->
     <!--    =============================================-->
@@ -26,6 +28,8 @@
     <meta name="msapplication-TileImage"
         content="{{ asset('/') }}template/assets/images/favicons/mstile-150x150.png" />
     <meta name="theme-color" content="#ffffff" />
+
+
     <!--  -->
     <!--    Stylesheets-->
     <!--    =============================================-->

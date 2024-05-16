@@ -15,6 +15,7 @@
         content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="colorlib" />
 
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     {{-- Icon --}}
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/') }}template/assets/logo/logo-only.png" />

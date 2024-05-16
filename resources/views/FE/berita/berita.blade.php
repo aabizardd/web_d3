@@ -23,22 +23,16 @@
 
                         <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                             <div class="overflow-hidden">
-                                <a href="{{ route('detail_berita', $item->id) }}">
+                                <a href="{{ route('detail_berita', [$item->id, slugify($item->judul)]) }}">
                                     <h5 class="truncate" data-zanim='{"delay":0}'>
                                         {{ $item->judul }}
                                     </h5>
                                 </a>
                             </div>
 
-                            @php
-
-                                $tanggal = DateTime::createFromFormat('Y-m-d H:i:s', $item->tanggal);
-                                $tanggal_format = $tanggal->format('d F Y');
-                            @endphp
-
                             <div class="overflow-hidden">
                                 <p class="color-7" data-zanim='{"delay":0.1}'>
-                                    {{ $tanggal_format }} <b>|</b>
+                                    {{ format_date($item->tanggal) }} <b>|</b>
                                     <span class="fa fa-eye">&nbsp;</span>{{ $item->dilihat }}
                                 </p>
                             </div>
@@ -50,7 +44,7 @@
                             <div class="overflow-hidden">
                                 <div class="d-inline-block" data-zanim='{"delay":0.3}'>
                                     <a class="d-flex align-items-center"
-                                        href="{{ route('detail_berita', $item->id) }}">Selebihnya
+                                        href="{{ route('detail_berita', [$item->id, slugify($item->judul)]) }}">Selebihnya
                                         <div class="overflow-hidden ml-2"
                                             data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'>
                                             <span class="d-inline-block">&xrarr;</span>

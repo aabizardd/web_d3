@@ -1,4 +1,16 @@
 @extends('FE.layout.main')
+
+@section('addMeta')
+    {{-- <title>{{ $berita->judul }}</title> --}}
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ $berita->judul }}" />
+    <meta property="og:description" content="{!! limit_text(strip_tags($berita->isi), 12) !!}" />
+    <meta property="og:image" content="{{ Storage::url($berita->foto) }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="article" />
+@endsection
+
 @section('content')
     <style>
         .truncate {
@@ -13,11 +25,7 @@
         }
     </style>
 
-    @php
-        $tanggal = DateTime::createFromFormat('Y-m-d H:i:s', $berita->tanggal);
-        $tanggal_format = $tanggal->format('F d, Y');
-        // echo $tanggal_format;
-    @endphp
+
     <section class="background-11 ">
         <div class="container">
             <div class="row">
@@ -29,7 +37,7 @@
                             </a>,
                             &nbsp;
                             <a class="d-inline-block color-7" href="#">
-                                {{ $tanggal_format }}
+                                {{ format_date($berita->tanggal) }}
                             </a>
                         </div>
                         <h4 data-zanim='{"delay":0.1}'>
@@ -41,8 +49,13 @@
                     <div class="row">
                         <div class="col-12"><img class="radius-tr-secondary radius-tl-secondary"
                                 src="{{ Storage::url($berita->foto) }}" alt=""></div>
+
+
+
                         <div class="col-12">
+
                             <div class="background-white p-5 radius-secondary">
+
                                 {!! $berita->isi !!}
                             </div>
                         </div>
@@ -64,6 +77,14 @@
                                         Pengelola Konten Website Portal Deputi 3 Bidang Koordinasi Pengembangan Usaha
                                         BUMN, Riset dan Inovasi
                                     </p>
+
+                                    <div class="pt-4" data-zanim='{"delay":0.3}'>
+                                        <h6>Bagikan Berita</h6>
+
+                                        <button class="btn btn-outline-info" id="copyLinkBtn">
+                                            Copy Link to Share
+                                        </button>
+                                    </div>
 
                                 </div>
                             </div>
@@ -112,4 +133,30 @@
             </div><!--/.row-->
         </div><!--/.container-->
     </section>
+@endsection
+
+@section('addScript')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            $('#copyLinkBtn').click(function() {
+                // Select the text inside the element with ID "linkToCopy"
+                var linkToCopy = document.createElement('input');
+                linkToCopy.value = window.location.href;
+                document.body.appendChild(linkToCopy);
+                linkToCopy.select();
+                document.execCommand('copy');
+                document.body.removeChild(linkToCopy);
+
+                // Show SweetAlert when link is copied
+                Swal.fire({
+                    title: 'Tautan Tersalin!',
+                    text: 'Tautan telah berhasil terasil ke clipboard.',
+                    icon: 'success',
+                    timer: 1500, // Set timer to automatically close the alert after 1.5 seconds
+                    showConfirmButton: false
+                });
+            });
+        });
+    </script>
 @endsection
