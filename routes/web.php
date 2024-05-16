@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\JafungController;
@@ -21,7 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontEndController::class, 'index']);
 Route::get('tugas', [FrontEndController::class, 'tugas'])->name('tugas');
+
 Route::get('renstra', [FrontEndController::class, 'renstra'])->name('renstra');
+
 Route::get('profil_deputi', [FrontEndController::class, 'profil_deputi'])->name('profil_deputi');
 Route::get('struktur_organisasi', [FrontEndController::class, 'struktur_organisasi'])->name('struktur_organisasi');
 
@@ -45,7 +48,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
-    
+
     Route::get('dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
     //kelola pengguna
@@ -73,7 +76,7 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
         Route::post('artikel', [JafungController::class, 'add_artikel'])->name('admin.artikel');
         Route::post('update_artikel/{id}', [JafungController::class, 'update_artikel'])->name('admin.update_artikel');
         Route::get('hapus_artikel/{id}', [JafungController::class, 'hapus_artikel'])->name('admin.hapus_artikel');
-       
+
         Route::get('analis_kebijakan', [JafungController::class, 'analis_kebijakan'])->name('admin.analis_kebijakan');
         Route::post('analis_kebijakan', [JafungController::class, 'add_analis_kebijakan'])->name('admin.analis_kebijakan');
         Route::get('hapus_analisis_kebijakan/{id}', [JafungController::class, 'hapus_analisis_kebijakan'])->name('admin.hapus_analisis_kebijakan');
@@ -81,8 +84,14 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
         Route::get('pustaka', [JafungController::class, 'pustaka'])->name('admin.pustaka');
         Route::post('pustaka', [JafungController::class, 'add_pustaka'])->name('admin.pustaka');
         Route::get('hapus_pustaka/{id}', [JafungController::class, 'hapus_pustaka'])->name('admin.hapus_pustaka');
-       
-
     });
-    
+
+    //about D3
+    Route::prefix('aboutd3')->group(function () {
+
+
+        Route::get('renstra', [AboutController::class, 'renstra'])->name('admin.renstra');
+        Route::post('renstra', [AboutController::class, 'add_renstra'])->name('admin.renstra');
+        Route::get('hapus_renstra/{id}', [AboutController::class, 'hapus_renstra'])->name('admin.hapus_renstra');
+    });
 });

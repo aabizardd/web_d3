@@ -75,7 +75,7 @@
                     <ul class="pcoded-submenu">
 
                         <li class="{{ Request::segment(3) == 'renstra' ? 'active' : '' }}">
-                            <a href="{{ route('admin.regulasi') }}" class="waves-effect waves-dark">
+                            <a href="{{ route('admin.renstra') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Renstra</span>
                             </a>
                         </li>

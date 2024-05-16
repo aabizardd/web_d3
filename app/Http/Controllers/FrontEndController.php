@@ -7,6 +7,7 @@ use App\Models\Artikel;
 use App\Models\Berita;
 use App\Models\Pustaka;
 use App\Models\Regulasi;
+use App\Models\Renstra;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
@@ -35,7 +36,13 @@ class FrontEndController extends Controller
     public function renstra()
     {
 
-        return view('FE.renstra.main');
+        $renstra = Renstra::all();
+
+        $data = [
+            'renstra' => $renstra
+        ];
+
+        return view('FE.renstra.main', $data);
     }
 
     public function struktur_organisasi()
@@ -75,8 +82,9 @@ class FrontEndController extends Controller
     }
 
 
-    public function add_lihat($id){
-        
+    public function add_lihat($id)
+    {
+
         $berita = Berita::find($id);
 
         // $tambah = $berita->dilihat + 1;
@@ -86,7 +94,6 @@ class FrontEndController extends Controller
         ];
 
         $berita->update($data);
-        
     }
     public function analisis_kebijakan()
     {

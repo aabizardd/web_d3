@@ -13,31 +13,26 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="card"
-                            style="
-              background-color: #3d4c6f;
-              height: 450px;
-              border-radius: 10px;
-            ">
-                            <img src="{{ asset('/') }}template/assets/images/renstra/cover-renstra.png"
-                                class="card-img-top" alt="..." style="height: 100%; border-radius: 10px" />
-                            <div class="card-body pos-absolute"
-                                style="
-                bottom: 0;
-                background-color: white;
-                width: 100%;
-                opacity: 90%;
-              ">
-                                <a href="">
-                                    <p class="card-title" style="color: #3d4c6f">
-                                        Rencana Strategis (Renstra) 2020-2024
-                                    </p>
-                                </a>
-                                <button class="btn btn-info w-100">Lihat Detail Renstra</button>
+
+                    @foreach ($renstra as $item)
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="card" style="background-color: #3d4c6f;height: 450px;border-radius: 10px;">
+                                <img src="{{ Storage::url($item->gambar) }}" class="card-img-top" alt="..."
+                                    style="height: 100%; border-radius: 10px" />
+                                <div class="card-body pos-absolute"
+                                    style="bottom: 0;background-color: white;width: 100%;opacity: 90%;">
+                                    <a href="{{ Storage::url($item->pdf) }}" target="_blank">
+                                        <p class="card-title" style="color: #3d4c6f">
+                                            {{ $item->judul }}
+                                        </p>
+                                    </a>
+                                    <a href="{{ Storage::url($item->pdf) }}" target="_blank"
+                                        class="btn btn-info w-100">Lihat Detail
+                                        Renstra</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
