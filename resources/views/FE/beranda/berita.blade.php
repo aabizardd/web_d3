@@ -1,3 +1,17 @@
+<style>
+    .truncate {
+        height: 2.4em;
+        /* Ubah sesuai kebutuhan, misalnya 3 baris */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* Menampilkan maksimal 2 baris */
+        -webkit-box-orient: vertical;
+    }
+</style>
+
+
 <section class="background-102">
     <div class="container">
         <div class="row">
@@ -8,126 +22,59 @@
                     data-zanim-trigger="scroll" />
             </div>
         </div>
+
         <div class="row mt-lg-6">
-            <div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
-                <div class="background-fafa pb-4 h-100 radius-secondary">
-                    <img class="w-100 radius-tr-secondary radius-tl-secondary"
-                        src="{{ asset('/') }}template/assets/images/berita/berita1.jpg" alt="Featured Image"
-                        height="250px" />
 
-                    <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                        <div class="overflow-hidden">
-                            <a href="news.html">
-                                <h5 data-zanim='{"delay":0}'>
-                                    Inovasi dan Efisiensi dalam penyusunan Renstra ....
-                                </h5>
-                            </a>
-                        </div>
-                        <div class="overflow-hidden">
-                            <p class="color-7" data-zanim='{"delay":0.1}'>
-                                14 Februari 2024 <b>|</b>
-                                <span class="fa fa-eye">&nbsp;</span>250
-                            </p>
-                        </div>
-                        <div class="overflow-hidden">
-                            <p class="mt-3" data-zanim='{"delay":0.2}'>
-                                Dalam upaya pemerintah melalui langkah konkrit konsepsi
-                                pengelolaan negara atas SDA dalam nilai tambah...
-                            </p>
-                        </div>
-                        <div class="overflow-hidden">
-                            <div class="d-inline-block" data-zanim='{"delay":0.3}'>
-                                <a class="d-flex align-items-center" href="#">Selebihnya
-                                    <div class="overflow-hidden ml-2"
-                                        data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'>
-                                        <span class="d-inline-block">&xrarr;</span>
-                                    </div>
+            @foreach ($berita as $item)
+                <div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
+                    <div class="background-fafa pb-4 h-100 radius-secondary">
+                        <img class="w-100 radius-tr-secondary radius-tl-secondary" src="{{ Storage::url($item->foto) }}"
+                            alt="Featured Image" height="250px" />
+
+                        <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+                            <div class="overflow-hidden">
+                                <a href="{{ route('detail_berita', $item->id) }}">
+                                    <h5 class="truncate" data-zanim='{"delay":0}'>
+                                        {{ $item->judul }}
+                                    </h5>
                                 </a>
+                            </div>
+                            @php
+
+                                $tanggal = DateTime::createFromFormat('Y-m-d H:i:s', $item->tanggal);
+                                $tanggal_format = $tanggal->format('d F Y');
+                            @endphp
+
+
+                            <div class="overflow-hidden">
+                                <p class="color-7" data-zanim='{"delay":0.1}'>
+                                    {{ $tanggal_format }} <b>|</b>
+                                    <span class="fa fa-eye">&nbsp;</span>{{ $item->dilihat }}
+                                </p>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p data-zanim='{"delay":0.2}' style="text-align: justify">
+                                    {!! limit_text(strip_tags($item->isi), 12) !!}
+                                </p>
+                            </div>
+                            <div class="overflow-hidden">
+                                <div class="d-inline-block" data-zanim='{"delay":0.3}'>
+                                    <a class="d-flex align-items-center"
+                                        href="{{ route('detail_berita', $item->id) }}">Selebihnya
+                                        <div class="overflow-hidden ml-2"
+                                            data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'>
+                                            <span class="d-inline-block">&xrarr;</span>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
 
-            <div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
-                <div class="background-fafa pb-4 h-100 radius-secondary">
-                    <img class="w-100 radius-tr-secondary radius-tl-secondary"
-                        src="{{ asset('/') }}template/assets/images/berita/berita2.jpg" alt="Featured Image"
-                        height="250px" />
 
-                    <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                        <div class="overflow-hidden">
-                            <a href="news.html">
-                                <h5 data-zanim='{"delay":0}'>
-                                    Inovasi dan Efisiensi dalam penyusunan Renstra ....
-                                </h5>
-                            </a>
-                        </div>
-                        <div class="overflow-hidden">
-                            <p class="color-7" data-zanim='{"delay":0.1}'>
-                                14 Februari 2024 <b>|</b>
-                                <span class="fa fa-eye">&nbsp;</span>250
-                            </p>
-                        </div>
-                        <div class="overflow-hidden">
-                            <p class="mt-3" data-zanim='{"delay":0.2}'>
-                                Dalam upaya pemerintah melalui langkah konkrit konsepsi
-                                pengelolaan negara atas SDA dalam nilai tambah...
-                            </p>
-                        </div>
-                        <div class="overflow-hidden">
-                            <div class="d-inline-block" data-zanim='{"delay":0.3}'>
-                                <a class="d-flex align-items-center" href="#">Selebihnya
-                                    <div class="overflow-hidden ml-2"
-                                        data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'>
-                                        <span class="d-inline-block">&xrarr;</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-6 col-lg-4 py-0 mt-4 mt-lg-0">
-                <div class="background-fafa pb-4 h-100 radius-secondary">
-                    <img class="w-100 radius-tr-secondary radius-tl-secondary"
-                        src="{{ asset('/') }}template/assets/images/berita/berita3.png" alt="Featured Image"
-                        height="250px" />
-
-                    <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
-                        <div class="overflow-hidden">
-                            <a href="news.html">
-                                <h5 data-zanim='{"delay":0}'>
-                                    Inovasi dan Efisiensi dalam penyusunan Renstra ....
-                                </h5>
-                            </a>
-                        </div>
-                        <div class="overflow-hidden">
-                            <p class="color-7" data-zanim='{"delay":0.1}'>
-                                14 Februari 2024 <b>|</b>
-                                <span class="fa fa-eye">&nbsp;</span>250
-                            </p>
-                        </div>
-                        <div class="overflow-hidden">
-                            <p class="mt-3" data-zanim='{"delay":0.2}'>
-                                Dalam upaya pemerintah melalui langkah konkrit konsepsi
-                                pengelolaan negara atas SDA dalam nilai tambah...
-                            </p>
-                        </div>
-                        <div class="overflow-hidden">
-                            <div class="d-inline-block" data-zanim='{"delay":0.3}'>
-                                <a class="d-flex align-items-center" href="#">Selebihnya
-                                    <div class="overflow-hidden ml-2"
-                                        data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'>
-                                        <span class="d-inline-block">&xrarr;</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <!--/.row-->
     </div>

@@ -43,9 +43,9 @@
                                 <span class="pcoded-mtext">Regulasi</span>
                             </a>
                         </li>
-                        <li class="">
-                            <a href="dashboard-crm.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">CRM</span>
+                        <li class="{{ Request::segment(3) == 'artikel' ? 'active' : '' }}">
+                            <a href="{{ route('admin.artikel') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Artikel</span>
                             </a>
                         </li>
                         <li class>

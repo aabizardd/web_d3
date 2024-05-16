@@ -39,11 +39,9 @@
     <link href="../../code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
     <link href="{{ asset('/') }}template/assets/lib/hamburgers/dist/hamburgers.min.css" rel="stylesheet" />
     <link href="{{ asset('/') }}template/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link
-        href="{{ asset('/') }}template/assets/lib/owl.carousel/dist/{{ asset('/') }}template/assets/owl.carousel.min.css"
+    <link href="{{ asset('/') }}template/assets/lib/owl.carousel/dist/assets/owl.carousel.min.css"
         rel="stylesheet" />
-    <link
-        href="{{ asset('/') }}template/assets/lib/owl.carousel/dist/{{ asset('/') }}template/assets/owl.theme.default.min.css"
+    <link href="{{ asset('/') }}template/assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css"
         rel="stylesheet" />
     <link href="{{ asset('/') }}template/assets/lib/remodal/dist/remodal.css" rel="stylesheet" />
     <link href="{{ asset('/') }}template/assets/lib/remodal/dist/remodal-default-theme.css" rel="stylesheet" />
@@ -52,6 +50,9 @@
     <!-- Main stylesheet and color file-->
     <link href="{{ asset('/') }}template/assets/css/style.css" rel="stylesheet" />
     <link href="{{ asset('/') }}template/assets/css/custom.css" rel="stylesheet" />
+
+
+
 
     @yield('addStyle')
 

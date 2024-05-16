@@ -27,15 +27,20 @@
                         <div class="d-inline">
 
                             @if (!isset($_GET['page']))
-                                <h5>Lihat Regulasi / Kegiatan</h5>
+                                <h5>Daftar Artikel</h5>
                                 <span>
-                                    Lihat data regulasi Deputi 3 anda di sini.
+                                    Lihat data artikel Deputi 3 anda di sini.
                                 </span>
                             @else
-                                @if ($_GET['page'] == 'tambah_regulasi')
-                                    <h5>Tambah Regulasi / Kegiatan</h5>
+                                @if ($_GET['page'] == 'tambah_artikel')
+                                    <h5>Tambah Artikel</h5>
                                     <span>
-                                        Tambah data regulasi Deputi 3 anda di sini.
+                                        Tambah data artikel Deputi 3 anda di sini.
+                                    </span>
+                                @elseif ($_GET['page'] == 'ubah_artikel')
+                                    <h5>Ubah Artikel</h5>
+                                    <span>
+                                        Ubah data artikel Deputi 3 anda di sini.
                                     </span>
                                 @endif
                             @endif
@@ -54,15 +59,20 @@
                             </li>
                             &nbsp;
                             <li class="breadcrumb-items">
-                                <a href="{{ route('admin.regulasi') }}">List Regulasi</a>
+                                <a href="{{ route('admin.artikel') }}">List Artikel</a>
                             </li>
 
                             @if (!isset($_GET['page']))
                             @else
-                                @if ($_GET['page'] == 'tambah_regulasi')
+                                @if ($_GET['page'] == 'tambah_artikel')
                                     &nbsp;/&nbsp;
                                     <li class="breadcrumb-items">
-                                        <a href="">Tambah Regulasi</a>
+                                        <a href="">Tambah Artikel</a>
+                                    </li>
+                                @elseif ($_GET['page'] == 'ubah_artikel')
+                                    &nbsp;/&nbsp;
+                                    <li class="breadcrumb-items">
+                                        <a href="">Ubah Artikel</a>
                                     </li>
                                 @endif
                             @endif
@@ -85,10 +95,12 @@
                         </button> --}}
 
                         @if (!isset($_GET['page']))
-                            @include('Admin.Jafung.data_regulasi')
+                            @include('Admin.Jafung.data_artikel')
                         @else
-                            @if ($_GET['page'] == 'tambah_regulasi')
-                                @include('Admin.Jafung.tambah_regulasi')
+                            @if ($_GET['page'] == 'tambah_artikel')
+                                @include('Admin.Jafung.tambah_artikel')
+                            @elseif ($_GET['page'] == 'ubah_artikel')
+                                @include('Admin.Jafung.ubah_artikel')
                             @endif
                         @endif
 

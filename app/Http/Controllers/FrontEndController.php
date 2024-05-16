@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artikel;
+use App\Models\Berita;
+use App\Models\Regulasi;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
@@ -11,7 +14,14 @@ class FrontEndController extends Controller
      */
     public function index()
     {
-        return view('FE.beranda.main');
+
+        $berita = Berita::limit(3)->get();
+
+        $data = [
+            'berita' => $berita
+        ];
+
+        return view('FE.beranda.main', $data);
     }
 
     public function tugas()
@@ -40,10 +50,42 @@ class FrontEndController extends Controller
 
     public function berita()
     {
+        $berita = Berita::paginate(6);
 
-        return view('FE.berita.main');
+        $data = [
+            'berita' => $berita
+        ];
+
+        return view('FE.berita.main', $data);
     }
 
+    public function detail_berita($id)
+    {
+
+        $data = [
+            'berita' => Berita::find($id),
+            'berita_terkait' => Berita::where('id', '!=', $id)->limit(3)->get()
+        ];
+
+        $this->add_lihat($id);
+
+        return view('FE.berita.detail-berita', $data);
+    }
+
+
+    public function add_lihat($id){
+        
+        $berita = Berita::find($id);
+
+        // $tambah = $berita->dilihat + 1;
+
+        $data = [
+            'dilihat' => $berita->dilihat + 1
+        ];
+
+        $berita->update($data);
+        
+    }
     public function analisis_kebijakan()
     {
 
@@ -53,13 +95,37 @@ class FrontEndController extends Controller
     public function regulasi()
     {
 
-        return view('FE.regulasi.main');
+        $regulasi = Regulasi::paginate(3);
+
+        $data = [
+            'regulasi' => $regulasi
+        ];
+
+        return view('FE.regulasi.main', $data);
     }
 
     public function artikel()
     {
+        $artikel = Artikel::paginate(6);
 
-        return view('FE.artikel.main');
+        $data = [
+            'artikel' => $artikel
+        ];
+
+        return view('FE.artikel.main', $data);
+    }
+
+    public function detail_artikel($id)
+    {
+
+        $data = [
+            'berita' => Artikel::find($id),
+            'berita_terkait' => Artikel::where('id', '!=', $id)->limit(3)->get()
+        ];
+
+        // $this->add_lihat($id);
+
+        return view('FE.berita.detail-artikel', $data);
     }
 
     public function pustaka()

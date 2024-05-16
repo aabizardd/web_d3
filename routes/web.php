@@ -24,13 +24,18 @@ Route::get('tugas', [FrontEndController::class, 'tugas'])->name('tugas');
 Route::get('renstra', [FrontEndController::class, 'renstra'])->name('renstra');
 Route::get('profil_deputi', [FrontEndController::class, 'profil_deputi'])->name('profil_deputi');
 Route::get('struktur_organisasi', [FrontEndController::class, 'struktur_organisasi'])->name('struktur_organisasi');
+
 Route::get('berita', [FrontEndController::class, 'berita'])->name('berita');
+Route::get('berita/{id}', [FrontEndController::class, 'detail_berita'])->name('detail_berita');
+
 Route::get('analisis_kebijakan', [FrontEndController::class, 'analisis_kebijakan'])->name('analisis_kebijakan');
 
 Route::get('regulasi', [FrontEndController::class, 'regulasi'])->name('regulasi');
 Route::get('pustaka', [FrontEndController::class, 'pustaka'])->name('pustaka');
-Route::get('artikel', [FrontEndController::class, 'artikel'])->name('artikel');
 
+
+Route::get('artikel', [FrontEndController::class, 'artikel'])->name('artikel');
+Route::get('artikel/{id}', [FrontEndController::class, 'detail_artikel'])->name('detail_artikel');
 
 //Auth
 Route::get('login', [AuthController::class, 'index'])->name('login');
@@ -61,9 +66,15 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
     Route::prefix('jafung')->group(function () {
 
         Route::get('regulasi', [JafungController::class, 'regulasi'])->name('admin.regulasi');
-
         Route::post('regulasi', [JafungController::class, 'add_regulasi'])->name('admin.regulasi');
         Route::get('hapus_regulasi/{id}', [JafungController::class, 'hapus_regulasi'])->name('admin.hapus_regulasi');
+
+        Route::get('artikel', [JafungController::class, 'artikel'])->name('admin.artikel');
+        Route::post('artikel', [JafungController::class, 'add_artikel'])->name('admin.artikel');
+        Route::post('update_artikel/{id}', [JafungController::class, 'update_artikel'])->name('admin.update_artikel');
+        Route::get('hapus_artikel/{id}', [JafungController::class, 'hapus_artikel'])->name('admin.hapus_artikel');
+       
+        // Route::get('hapus_regulasi/{id}', [JafungController::class, 'hapus_regulasi'])->name('admin.hapus_regulasi');
 
     });
     
