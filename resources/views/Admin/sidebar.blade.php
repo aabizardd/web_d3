@@ -64,6 +64,33 @@
                     </ul>
                 </li>
 
+                <li class="pcoded-hasmenu {{ Request::segment(2) == 'aboutd3' ? 'active pcoded-trigger' : '' }}">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <img src="{{ asset('/') }}template/assets/logo/d3-logo-only-white.png" alt=""
+                                width="20">
+                        </span>
+                        <span class="pcoded-mtext">Tentang Deputi 3</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+
+                        <li class="{{ Request::segment(3) == 'renstra' ? 'active' : '' }}">
+                            <a href="{{ route('admin.regulasi') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Renstra</span>
+                            </a>
+                        </li>
+
+                        <li class="{{ Request::segment(3) == 'profil_deputi' ? 'active' : '' }}">
+                            <a href="{{ route('admin.artikel') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Profil Deputi</span>
+                            </a>
+                        </li>
+
+
+
+                    </ul>
+                </li>
+
 
             </ul>
 

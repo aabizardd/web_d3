@@ -38,8 +38,8 @@
                 <li class="user-profile header-notification">
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="{{ asset('/') }}files/assets/images/avatar-4.jpg" class="img-radius"
-                                alt="User-Profile-Image">
+                            <img src="https://img.freepik.com/free-photo/view-3d-practicing-lawyer_23-2151023412.jpg?t=st=1715838980~exp=1715842580~hmac=8a71a45132bce99431de567dba26ad2fc3f82a198f341ebc8fc25252100f02ee&w=740"
+                                class="img-radius" alt="User-Profile-Image">
                             <span>
                                 {{ auth()->user()->name }}
                             </span>
