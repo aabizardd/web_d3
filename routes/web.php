@@ -31,8 +31,8 @@ Route::get('berita/{id}', [FrontEndController::class, 'detail_berita'])->name('d
 Route::get('analisis_kebijakan', [FrontEndController::class, 'analisis_kebijakan'])->name('analisis_kebijakan');
 
 Route::get('regulasi', [FrontEndController::class, 'regulasi'])->name('regulasi');
-Route::get('pustaka', [FrontEndController::class, 'pustaka'])->name('pustaka');
 
+Route::get('pustaka', [FrontEndController::class, 'pustaka'])->name('pustaka');
 
 Route::get('artikel', [FrontEndController::class, 'artikel'])->name('artikel');
 Route::get('artikel/{id}', [FrontEndController::class, 'detail_artikel'])->name('detail_artikel');
@@ -76,8 +76,12 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
        
         Route::get('analis_kebijakan', [JafungController::class, 'analis_kebijakan'])->name('admin.analis_kebijakan');
         Route::post('analis_kebijakan', [JafungController::class, 'add_analis_kebijakan'])->name('admin.analis_kebijakan');
-        // Route::post('regulasi', [JafungController::class, 'add_regulasi'])->name('admin.regulasi');
         Route::get('hapus_analisis_kebijakan/{id}', [JafungController::class, 'hapus_analisis_kebijakan'])->name('admin.hapus_analisis_kebijakan');
+
+        Route::get('pustaka', [JafungController::class, 'pustaka'])->name('admin.pustaka');
+        Route::post('pustaka', [JafungController::class, 'add_pustaka'])->name('admin.pustaka');
+        Route::get('hapus_pustaka/{id}', [JafungController::class, 'hapus_pustaka'])->name('admin.hapus_pustaka');
+       
 
     });
     

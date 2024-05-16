@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AnalisKebijakan;
 use App\Models\Artikel;
 use App\Models\Berita;
+use App\Models\Pustaka;
 use App\Models\Regulasi;
 use Illuminate\Http\Request;
 
@@ -139,7 +140,13 @@ class FrontEndController extends Controller
     public function pustaka()
     {
 
-        return view('FE.pustaka.main');
+        $pustaka = Pustaka::paginate(3);
+
+        $data = [
+            'pustaka' => $pustaka
+        ];
+
+        return view('FE.pustaka.main', $data);
     }
 
     /**

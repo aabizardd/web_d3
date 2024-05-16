@@ -56,7 +56,7 @@
                         </li>
 
                         <li class="{{ Request::segment(3) == 'pustaka' ? 'active' : '' }}">
-                            <a href="dashboard-analytics.html" class="waves-effect waves-dark">
+                            <a href="{{ route('admin.pustaka') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Pustaka</span>
 
                             </a>

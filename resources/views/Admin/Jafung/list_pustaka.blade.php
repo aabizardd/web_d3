@@ -27,15 +27,15 @@
                         <div class="d-inline">
 
                             @if (!isset($_GET['page']))
-                                <h5>Lihat Analisis Kebijakan</h5>
+                                <h5>Lihat Pustaka</h5>
                                 <span>
-                                    Lihat data analisis kebijakan Deputi 3 anda di sini.
+                                    Lihat data Pustaka Deputi 3 anda di sini.
                                 </span>
                             @else
-                                @if ($_GET['page'] == 'tambah_analisis_kebijakan')
-                                    <h5>Tambah Analisis Kebijakan</h5>
+                                @if ($_GET['page'] == 'tambah_pustaka')
+                                    <h5>Tambah Pustaka</h5>
                                     <span>
-                                        Tambah data analisis kebijakan Deputi 3 anda di sini.
+                                        Tambah data Pustaka Deputi 3 anda di sini.
                                     </span>
                                 @endif
                             @endif
@@ -54,15 +54,15 @@
                             </li>
                             &nbsp;
                             <li class="breadcrumb-items">
-                                <a href="{{ route('admin.analis_kebijakan') }}">List Analisis Kebijakan</a>
+                                <a href="{{ route('admin.pustaka') }}">List Pustaka</a>
                             </li>
 
                             @if (!isset($_GET['page']))
                             @else
-                                @if ($_GET['page'] == 'tambah_analisis_kebijakan')
+                                @if ($_GET['page'] == 'tambah_pustaka')
                                     &nbsp;/&nbsp;
                                     <li class="breadcrumb-items">
-                                        <a href="">Tambah Kebijakan</a>
+                                        <a href="">Tambah Pustaka</a>
                                     </li>
                                 @endif
                             @endif
@@ -85,10 +85,10 @@
                         </button> --}}
 
                         @if (!isset($_GET['page']))
-                            @include('Admin.Jafung.data_analis_kebijakan')
+                            @include('Admin.Jafung.data_pustaka')
                         @else
-                            @if ($_GET['page'] == 'tambah_analisis_kebijakan')
-                                @include('Admin.Jafung.tambah_analisis_kebijakan')
+                            @if ($_GET['page'] == 'tambah_pustaka')
+                                @include('Admin.Jafung.tambah_pustaka')
                             @endif
                         @endif
 
