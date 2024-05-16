@@ -9,7 +9,7 @@
 
                         <div class="px-4 pt-4" data-zanim-timeline="{}" data-zanim-trigger="scroll">
                             <div class="overflow-hidden">
-                                <a href="news.html">
+                                <a href="{{ Storage::url($item->pdf) }}" target="_blank">
                                     <h6 data-zanim='{"delay":0}' style="font-size:15px;text-align: justify">
                                         {{ $item->judul }}
                                     </h6>

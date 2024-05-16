@@ -74,7 +74,10 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
         Route::post('update_artikel/{id}', [JafungController::class, 'update_artikel'])->name('admin.update_artikel');
         Route::get('hapus_artikel/{id}', [JafungController::class, 'hapus_artikel'])->name('admin.hapus_artikel');
        
-        // Route::get('hapus_regulasi/{id}', [JafungController::class, 'hapus_regulasi'])->name('admin.hapus_regulasi');
+        Route::get('analis_kebijakan', [JafungController::class, 'analis_kebijakan'])->name('admin.analis_kebijakan');
+        Route::post('analis_kebijakan', [JafungController::class, 'add_analis_kebijakan'])->name('admin.analis_kebijakan');
+        // Route::post('regulasi', [JafungController::class, 'add_regulasi'])->name('admin.regulasi');
+        Route::get('hapus_analisis_kebijakan/{id}', [JafungController::class, 'hapus_analisis_kebijakan'])->name('admin.hapus_analisis_kebijakan');
 
     });
     

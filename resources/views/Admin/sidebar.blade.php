@@ -48,10 +48,17 @@
                                 <span class="pcoded-mtext">Artikel</span>
                             </a>
                         </li>
-                        <li class>
+                        <li class="{{ Request::segment(3) == 'analis_kebijakan' ? 'active' : '' }}">
+                            <a href="{{ route('admin.analis_kebijakan') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Analis Kebijakan</span>
+
+                            </a>
+                        </li>
+
+                        <li class="{{ Request::segment(3) == 'pustaka' ? 'active' : '' }}">
                             <a href="dashboard-analytics.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Analytics</span>
-                                <span class="pcoded-badge label label-info ">NEW</span>
+                                <span class="pcoded-mtext">Pustaka</span>
+
                             </a>
                         </li>
                     </ul>

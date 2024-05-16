@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnalisKebijakan;
 use App\Models\Artikel;
 use App\Models\Berita;
 use App\Models\Regulasi;
@@ -89,7 +90,14 @@ class FrontEndController extends Controller
     public function analisis_kebijakan()
     {
 
-        return view('FE.analis_kebijakan.main');
+        $source = AnalisKebijakan::paginate(3);
+
+        $data = [
+            'source' => $source
+        ];
+
+
+        return view('FE.analis_kebijakan.main', $data);
     }
 
     public function regulasi()

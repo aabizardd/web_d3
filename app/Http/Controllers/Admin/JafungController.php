@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AnalisKebijakan;
 use App\Models\Artikel;
 use App\Models\Regulasi;
 use Illuminate\Http\Request;
@@ -177,51 +178,62 @@ class JafungController extends Controller
          return redirect()->route('admin.artikel')->with('success', 'Artikel berhasil dihapus');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function analis_kebijakan()
     {
-        //
+
+        $analis_kebijakan = AnalisKebijakan::all();
+
+        $data = [
+            'analis_kebijakan' => $analis_kebijakan
+        ];
+
+        
+
+        return view('Admin.Jafung.list_analis_kebijakan', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function add_analis_kebijakan(Request $request){
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        // Validasi data yang dikirimkan melalui form
+        $validatedData = $request->validate([
+           'gambar' => 'required|image|mimes:jpeg,png,gif|max:2048', // sesuaikan dengan kebutuhan validasi
+           'judul' => 'required|string|max:255',
+           'tanggal' => 'required|date',
+           'pdf' => 'required|mimes:pdf,xls,xlsx|max:2048', // sesuaikan dengan kebutuhan validasi
+       ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+       // Proses menyimpan file gambar
+       $gambarPath = $request->file('gambar')->store('public/foto_analisis_kebijakan');
+     
+       // Proses menyimpan file PDF
+       $pdfPath = $request->file('pdf')->store('public/pdf_analisis_kebijakan');
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+       // Simpan data ke database
+       AnalisKebijakan::create([
+           'gambar' => $gambarPath,
+           'judul' => $validatedData['judul'],
+           'tanggal' => $validatedData['tanggal'],
+           'pdf' => $pdfPath,
+       ]);
+
+       // Redirect atau response sesuai kebutuhan
+       return redirect()->route('admin.analis_kebijakan')->with('success', 'Data Analisis Kebijakan berhasil disimpan');
+   }
+
+   public function hapus_analisis_kebijakan($id){
+    // Temukan berita berdasarkan ID
+    $data = AnalisKebijakan::findOrFail($id);
+
+    // Hapus foto dari penyimpanan
+    Storage::delete($data->gambar);
+    Storage::delete($data->pdf);
+
+    // Hapus berita dari database
+    $data->delete();
+
+    // Redirect ke halaman lain dengan pesan sukses
+    return redirect()->route('admin.analis_kebijakan')->with('success', 'Analisis Kebijakan berhasil dihapus');
+}
+  
 }

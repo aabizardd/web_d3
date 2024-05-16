@@ -23,7 +23,7 @@
 
 
 
-                        <i class="fas fa-newspaper bg-c-blue"></i>
+                        <i class="far fa-comment bg-c-blue"></i>
                         <div class="d-inline">
 
                             @if (!isset($_GET['page']))
@@ -48,7 +48,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class="breadcrumb breadcrumb-title breadcrumb-padding">
                             <li class="breadcrumb-item">
-                                <a href=""><i class="fas fa-newspaper"></i>
+                                <a href=""><i class="far fa-comment"></i>
                                 </a> /
 
                             </li>
