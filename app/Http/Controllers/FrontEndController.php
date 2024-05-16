@@ -9,6 +9,7 @@ use App\Models\ProfilDeputi;
 use App\Models\Pustaka;
 use App\Models\Regulasi;
 use App\Models\Renstra;
+use App\Models\StrukturOrganisasi;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
@@ -49,7 +50,15 @@ class FrontEndController extends Controller
     public function struktur_organisasi()
     {
 
-        return view('FE.struktur_organisasi.main');
+        if (!isset($_GET['asdep'])) {
+
+            $data['struktur'] = StrukturOrganisasi::find(1);
+        } else {
+            // $asdep = $_GET['asdep'] + 1;
+            $data['struktur'] = StrukturOrganisasi::find($_GET['asdep'] + 1);
+        }
+
+        return view('FE.struktur_organisasi.main', $data);
     }
 
     public function profil_deputi()

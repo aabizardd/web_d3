@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProfilDeputi;
 use App\Models\Renstra;
+use App\Models\StrukturOrganisasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -122,5 +123,62 @@ class AboutController extends Controller
 
         // Redirect ke halaman lain dengan pesan sukses
         return redirect()->back()->with('success', 'Profil deputi berhasil diperbarui');
+    }
+
+    public function struktur_organisasi()
+    {
+
+        $renstra = StrukturOrganisasi::all();
+
+        $data = [
+            'renstra' => $renstra
+        ];
+
+        if (isset($_GET['id'])) {
+            $data['sok'] = StrukturOrganisasi::find($_GET['id']);
+        }
+
+        return view('Admin.StrukturOrganisasi.data_struktur', $data);
+    }
+
+    public function update_struktur(Request $request, $id)
+    {
+
+        // Validasi input
+        $validator = Validator::make($request->all(), [
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10048', // Maksimum 2MB
+
+        ]);
+
+        // Jika validasi gagal
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Temukan berita berdasarkan ID
+        $upd_data = StrukturOrganisasi::findOrFail($id);
+
+
+
+        // Update foto jika diunggah
+        if ($request->hasFile('gambar')) {
+            // Hapus foto lama
+            // Storage::delete($upd_data->foto);
+            if (!is_null($upd_data->gambar) && is_string($upd_data->gambar)) {
+                Storage::delete($upd_data->gambar);
+            }
+
+            // Simpan foto baru
+            $fotoPath = $request->file('gambar')->store('public/foto_struktur_organisasi');
+            $upd_data->gambar = $fotoPath;
+        }
+
+        // Simpan perubahan
+        $upd_data->save();
+
+        // Redirect ke halaman lain dengan pesan sukses
+        return redirect()->route('admin.struktur_organisasi')->with('success', 'Struktur Organisasi berhasil diperbarui');
     }
 }

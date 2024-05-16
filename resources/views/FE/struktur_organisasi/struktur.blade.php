@@ -42,8 +42,8 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <img src="{{ asset('/') }}template/assets/images/{{ $gambar }}" class="img-fluid"
-                    alt="" srcset="" style="border-radius: 30px" />
+                <img src="{{ Storage::url($struktur->gambar) }}" class="img-fluid" alt="" srcset=""
+                    style="border-radius: 30px" />
             </div>
         </div>
         <!--/.row-->

@@ -86,6 +86,12 @@
                             </a>
                         </li>
 
+                        <li class="{{ Request::segment(3) == 'struktur_organisasi' ? 'active' : '' }}">
+                            <a href="{{ route('admin.struktur_organisasi') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Struktur Organisasi</span>
+                            </a>
+                        </li>
+
 
 
                     </ul>

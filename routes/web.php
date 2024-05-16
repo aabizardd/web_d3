@@ -97,5 +97,9 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
 
         Route::get('profil_deputi', [AboutController::class, 'profil_deputi'])->name('admin.profil_deputi');
         Route::post('profil_deputi', [AboutController::class, 'update_profil_deputi'])->name('admin.profil_deputi');
+
+        Route::get('struktur_organisasi', [AboutController::class, 'struktur_organisasi'])->name('admin.struktur_organisasi');
+
+        Route::post('update_struktur_organisasi/{id}', [AboutController::class, 'update_struktur'])->name('admin.update_struktur_organisasi');
     });
 });
