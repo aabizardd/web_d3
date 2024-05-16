@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <img src="{{ Storage::url($struktur->gambar) }}" class="img-fluid" alt="" srcset=""
-                    style="border-radius: 30px" />
+                    style="border-radius: 30px;width: 100%;height: 800px;" />
             </div>
         </div>
         <!--/.row-->
