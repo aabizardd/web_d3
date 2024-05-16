@@ -3,9 +3,11 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.722176398771!2d106.83248297503727!3d-6.167945593819344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5cf377ea695%3A0x12e8680338996a6c!2sGedung%20Pos%20Ibukota!5e0!3m2!1sid!2sid!4v1709173616921!5m2!1sid!2sid"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5925.363092134942!2d106.83739050549148!3d-6.170796759292524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f50df0d94dc9%3A0x9dd484ba1103df12!2sCoordinating%20International%20Economic%20Cooperation!5e0!3m2!1sid!2sid!4v1715854806510!5m2!1sid!2sid"
                     width="100%" height="350px" style="border: 0; border-radius: 20px" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
             </div>
             <div class="col-lg-6 mt-4 mt-lg-0">
                 <div class="row">
@@ -14,8 +16,8 @@
                             <li class="mb-3">
                                 <span class="color-white" href="#"><b>Alamat</b></span>
                                 <p class="color-white">
-                                    Jalan Lapangan Banteng Timur Nomor 2-4, Jakarta Pusat,
-                                    10710
+                                    Gedung Ali Wardhana, Jl. Lap. Banteng Timur No.2 - 4, Ps. Baru, Kecamatan Sawah
+                                    Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710
                                 </p>
                             </li>
 

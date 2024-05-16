@@ -20,11 +20,15 @@
 
     {{-- Icon --}}
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/') }}template/assets/logo/logo-only.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/') }}template/assets/logo/logo-only.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/') }}template/assets/logo/logo-only.png" />
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/') }}template/assets/logo/logo-only.png" />
-    <link rel="mask-icon" href="{{ asset('/') }}template/assets/logo/logo-only.png" color="#5bbad5" />
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ asset('/') }}template/assets/logo/d3-logo-only-white.png" />
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ asset('/') }}template/assets/logo/d3-logo-only-white.png" />
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ asset('/') }}template/assets/logo/d3-logo-only-white.png" />
+    <link rel="shortcut icon" type="image/x-icon"
+        href="{{ asset('/') }}template/assets/logo/d3-logo-only-white.png" />
+    <link rel="mask-icon" href="{{ asset('/') }}template/assets/logo/d3-logo-only-white.png" color="#5bbad5" />
 
     {{-- ---- --}}
 

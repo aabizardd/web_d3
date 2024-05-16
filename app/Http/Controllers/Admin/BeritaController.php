@@ -21,7 +21,7 @@ class BeritaController extends Controller
             'all_berita' => Berita::all()
         ];
 
-        if(isset($_GET['id'])){
+        if (isset($_GET['id'])) {
             $data['bt'] = Berita::find($_GET['id']);
         }
 
@@ -56,7 +56,9 @@ class BeritaController extends Controller
         }
 
         // Proses penyimpanan file foto
-        $fotoPath = $request->file('foto')->store('public/foto'); // Simpan di dalam direktori storage
+        $fotoPath = $request->file('foto')->store('public/foto');
+        // Simpan di dalam direktori storage
+
 
         // Buat entri baru di database
         $post = new Berita();
@@ -136,16 +138,16 @@ class BeritaController extends Controller
      */
     public function destroy($id)
     {
-         // Temukan berita berdasarkan ID
-         $post = Berita::findOrFail($id);
+        // Temukan berita berdasarkan ID
+        $post = Berita::findOrFail($id);
 
-         // Hapus foto dari penyimpanan
-         Storage::delete($post->foto);
- 
-         // Hapus berita dari database
-         $post->delete();
- 
-         // Redirect ke halaman lain dengan pesan sukses
-         return redirect()->route('admin.berita')->with('success', 'Berita berhasil dihapus');
+        // Hapus foto dari penyimpanan
+        Storage::delete($post->foto);
+
+        // Hapus berita dari database
+        $post->delete();
+
+        // Redirect ke halaman lain dengan pesan sukses
+        return redirect()->route('admin.berita')->with('success', 'Berita berhasil dihapus');
     }
 }

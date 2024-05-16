@@ -6,7 +6,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{{ $berita->judul }}" />
     <meta property="og:description" content="{!! limit_text(strip_tags($berita->isi), 12) !!}" />
-    <meta property="og:image" content="{{ Storage::url($berita->foto) }}" />
+    <meta property="og:image" content="{{ asset('/') }}template/assets/images/10.jpg" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="article" />
 @endsection
@@ -50,7 +50,7 @@
                         <div class="col-12"><img class="radius-tr-secondary radius-tl-secondary"
                                 src="{{ Storage::url($berita->foto) }}" alt=""></div>
 
-
+                        {{-- http://127.0.0.1:8000/storage/foto/8gcgGWsPI5nmrgtyRdqUcbafTVdDCqI6QFHWm8PL.jpg --}}
 
                         <div class="col-12">
 
