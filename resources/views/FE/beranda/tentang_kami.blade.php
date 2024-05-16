@@ -33,7 +33,7 @@
                         </div>
                         <div class="overflow-hidden">
                             <div data-zanim='{"delay":0.2}'>
-                                <a class="d-flex align-items-center" href="#">Selebihnya
+                                <a class="d-flex align-items-center" href="{{ route('tugas') }}">Selebihnya
                                     <div class="overflow-hidden ml-2">
                                         <span class="d-inline-block"
                                             data-zanim='{"from":{"opacity":0,"x":-30},"to":{"opacity":1,"x":0},"delay":0.8}'>&xrarr;</span>

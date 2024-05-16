@@ -81,7 +81,7 @@
                         </li>
 
                         <li class="{{ Request::segment(3) == 'profil_deputi' ? 'active' : '' }}">
-                            <a href="{{ route('admin.artikel') }}" class="waves-effect waves-dark">
+                            <a href="{{ route('admin.profil_deputi') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Profil Deputi</span>
                             </a>
                         </li>

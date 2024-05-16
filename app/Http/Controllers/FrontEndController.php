@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AnalisKebijakan;
 use App\Models\Artikel;
 use App\Models\Berita;
+use App\Models\ProfilDeputi;
 use App\Models\Pustaka;
 use App\Models\Regulasi;
 use App\Models\Renstra;
@@ -53,8 +54,11 @@ class FrontEndController extends Controller
 
     public function profil_deputi()
     {
+        $data = [
+            'profil' => ProfilDeputi::find(1)
+        ];
 
-        return view('FE.profil_deputi.main');
+        return view('FE.profil_deputi.main', $data);
     }
 
     public function berita()

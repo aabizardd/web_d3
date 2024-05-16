@@ -26,6 +26,7 @@ Route::get('tugas', [FrontEndController::class, 'tugas'])->name('tugas');
 Route::get('renstra', [FrontEndController::class, 'renstra'])->name('renstra');
 
 Route::get('profil_deputi', [FrontEndController::class, 'profil_deputi'])->name('profil_deputi');
+
 Route::get('struktur_organisasi', [FrontEndController::class, 'struktur_organisasi'])->name('struktur_organisasi');
 
 Route::get('berita', [FrontEndController::class, 'berita'])->name('berita');
@@ -93,5 +94,8 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
         Route::get('renstra', [AboutController::class, 'renstra'])->name('admin.renstra');
         Route::post('renstra', [AboutController::class, 'add_renstra'])->name('admin.renstra');
         Route::get('hapus_renstra/{id}', [AboutController::class, 'hapus_renstra'])->name('admin.hapus_renstra');
+
+        Route::get('profil_deputi', [AboutController::class, 'profil_deputi'])->name('admin.profil_deputi');
+        Route::post('profil_deputi', [AboutController::class, 'update_profil_deputi'])->name('admin.profil_deputi');
     });
 });
