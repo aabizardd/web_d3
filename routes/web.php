@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\JafungController;
 use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FrontEndController;
@@ -54,7 +55,16 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
     Route::post('berita', [BeritaController::class, 'store'])->name('admin.berita');
     Route::post('update_berita/{id}', [BeritaController::class, 'update'])->name('admin.update_berita');
     Route::get('hapus_berita/{id}', [BeritaController::class, 'destroy'])->name('admin.hapus_berita');
-   
     //------
+
+    //jafung
+    Route::prefix('jafung')->group(function () {
+
+        Route::get('regulasi', [JafungController::class, 'regulasi'])->name('admin.regulasi');
+
+        Route::post('regulasi', [JafungController::class, 'add_regulasi'])->name('admin.regulasi');
+        Route::get('hapus_regulasi/{id}', [JafungController::class, 'hapus_regulasi'])->name('admin.hapus_regulasi');
+
+    });
     
 });

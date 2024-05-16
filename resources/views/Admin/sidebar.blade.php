@@ -25,24 +25,25 @@
                 <li class="{{ Request::segment(2) == 'berita' ? 'active' : '' }}">
                     <a href="{{ route('admin.berita') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
-                            <i class="fas fa-newspaper"></i>
+                            <i class="far fa-newspaper"></i>
                         </span>
                         <span class="pcoded-mtext">Berita / Kegiatan</span>
                     </a>
                 </li>
-
-                <li class="pcoded-hasmenu active pcoded-trigger">
+                {{-- active pcoded-trigger --}}
+                <li class="pcoded-hasmenu {{ Request::segment(2) == 'jafung' ? 'active pcoded-trigger' : '' }}">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
-                        <span class="pcoded-mtext">Dashboard</span>
+                        <span class="pcoded-micon"><i class="far fa-comment"></i></span>
+                        <span class="pcoded-mtext">Forum Jafung</span>
                     </a>
                     <ul class="pcoded-submenu">
-                        <li class>
-                            <a href="index.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Default</span>
+
+                        <li class="{{ Request::segment(3) == 'regulasi' ? 'active' : '' }}">
+                            <a href="{{ route('admin.regulasi') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Regulasi</span>
                             </a>
                         </li>
-                        <li class="active">
+                        <li class="">
                             <a href="dashboard-crm.html" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">CRM</span>
                             </a>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('foto');
             $table->longText('isi');
             $table->dateTime('tanggal');
+            $table->integer('dilihat')->default(0);
 
             // $table->dateTime('tanggal');
 
