@@ -16,7 +16,7 @@ class PenggunaController extends Controller
     public function index()
     {
         $data = [
-            'pengguna' => User::where('id','!=',auth()->user()->id)->get()
+            'pengguna' => User::all()
         ];
 
         if(isset($_GET['id'])){

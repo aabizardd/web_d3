@@ -44,6 +44,19 @@
                         @enderror
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="">Tanggal</label>
+                        <input class="form-control @error('tanggal') is-invalid @enderror" type="date" name="tanggal"
+                            id="tanggal" placeholder="Tanggal" value="{{ old('tanggal') }}" required>
+
+                        @error('tanggal')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+
 
                 </div>
 

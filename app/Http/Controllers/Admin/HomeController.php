@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artikel;
+use App\Models\Berita;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,10 @@ class HomeController extends Controller
     {
 
         $data = [
-            'ct_pengguna' => User::count()
+            'ct_pengguna' => User::count(),
+            'ct_berita' => Berita::count(),
+            'ct_artikel' => Artikel::count(),
+            'ct_pic' => User::where('role', 2)->count(),
         ];
 
         return view('Admin.Home.content', $data);

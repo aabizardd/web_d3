@@ -63,6 +63,7 @@ class BeritaController extends Controller
         $post->judul = $request->judul;
         $post->foto = $fotoPath;
         $post->isi = $request->isi;
+        $post->tanggal = $request->tanggal;
         $post->id_user = auth()->user()->id;
         $post->save();
 
@@ -111,6 +112,7 @@ class BeritaController extends Controller
         // Update judul dan isi berita
         $post->judul = $request->judul;
         $post->isi = $request->isi;
+        $post->tanggal = $request->tanggal;
 
         // Update foto jika diunggah
         if ($request->hasFile('foto')) {

@@ -63,7 +63,7 @@
                                         <div class="row align-items-center m-b-30">
                                             <div class="col">
                                                 <h6 class="m-b-5 text-white">Total Berita</h6>
-                                                <h3 class="m-b-0 f-w-700 text-white">15 Berita</h3>
+                                                <h3 class="m-b-0 f-w-700 text-white">{{ $ct_berita }} Berita</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-newspaper text-c-blue f-18"></i>
@@ -79,7 +79,7 @@
                                         <div class="row align-items-center m-b-30">
                                             <div class="col">
                                                 <h6 class="m-b-5 text-white">Total Artikel</h6>
-                                                <h3 class="m-b-0 f-w-700 text-white">13 Artikel</h3>
+                                                <h3 class="m-b-0 f-w-700 text-white">{{ $ct_artikel }} Artikel</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-book text-c-green f-18"></i>
@@ -95,7 +95,7 @@
                                         <div class="row align-items-center m-b-30">
                                             <div class="col">
                                                 <h6 class="m-b-5 text-white">Total PIC Asdep</h6>
-                                                <h3 class="m-b-0 f-w-700 text-white">5 PIC</h3>
+                                                <h3 class="m-b-0 f-w-700 text-white">{{ $ct_pic }} PIC</h3>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-users text-c-yellow f-18"></i>
