@@ -16,6 +16,8 @@ class HomeController extends Controller
     public function index()
     {
 
+        // dd(auth()->user()->role);
+
         $data = [
             'ct_pengguna' => User::count(),
             'ct_berita' => Berita::count(),

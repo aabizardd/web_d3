@@ -3,7 +3,7 @@
         <div class="navbar-logo">
             <a href="index.html">
                 <img class="img-fluid" src="{{ asset('/') }}template/assets/logo/logo-white.png" alt="Theme-Logo"
-                    width="180" />
+                    width="180" style="margin-top: -13px" />
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="#!">
                 <i class="feather icon-menu icon-toggle-right"></i>

@@ -113,7 +113,8 @@
                                                         {!! limit_text(strip_tags($item->isi), 12) !!}
                                                     </dvi>
                                                     <br> <br>
-                                                    <a href="{{ route('detail_berita', $item->id) }}">
+                                                    <a
+                                                        href="{{ route('detail_berita', [$item->id, slugify($item->judul)]) }}">
                                                         Selebihnya &xrarr;
 
                                                     </a>

@@ -13,7 +13,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        
+
         return view('Admin.Auth.login');
     }
 
@@ -33,17 +33,19 @@ class AuthController extends Controller
                 ->withInput();
         }
 
-         // Attempt to login
-         $credentials = $request->only('email', 'password');
-         if (Auth::attempt($credentials)) {
-             
-             return redirect()->route('admin.dashboard');
-         }
- 
-         // Jika login gagal
-         return redirect()->back()
-             ->withErrors(['email' => 'These credentials do not match our records.'])
-             ->withInput();
+        // Attempt to login
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+
+
+
+            return redirect()->route('admin.dashboard');
+        }
+
+        // Jika login gagal
+        return redirect()->back()
+            ->withErrors(['email' => 'These credentials do not match our records.'])
+            ->withInput();
 
         // return view('Admin.Auth.login');
     }
@@ -56,5 +58,4 @@ class AuthController extends Controller
 
         return redirect('/login');
     }
-
 }

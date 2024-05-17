@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\JafungController;
 use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BahanRapatController;
 use App\Http\Controllers\FrontEndController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,27 +49,30 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
-Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
+Route::prefix('admin')->group(function () {
 
     Route::get('dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
-    //kelola pengguna
-    Route::get('pengguna', [PenggunaController::class, 'index'])->name('admin.pengguna');
-    Route::post('pengguna', [PenggunaController::class, 'store'])->name('admin.pengguna');
-    Route::post('ubah_pengguna/{id}', [PenggunaController::class, 'update'])->name('admin.ubah_pengguna');
-    Route::get('hapus_pengguna/{id}', [PenggunaController::class, 'destroy'])->name('admin.hapus_pengguna');
-    //------
+    Route::middleware(['auth', 'role:1'])->group(function () {
+        //kelola pengguna
+        Route::get('pengguna', [PenggunaController::class, 'index'])->name('admin.pengguna');
+        Route::post('pengguna', [PenggunaController::class, 'store'])->name('admin.pengguna');
+        Route::post('ubah_pengguna/{id}', [PenggunaController::class, 'update'])->name('admin.ubah_pengguna');
+        Route::get('hapus_pengguna/{id}', [PenggunaController::class, 'destroy'])->name('admin.hapus_pengguna');
+        //------
+    });
 
-    //kelola berita
-    Route::get('berita', [BeritaController::class, 'index'])->name('admin.berita');
-    Route::post('berita', [BeritaController::class, 'store'])->name('admin.berita');
-    Route::post('update_berita/{id}', [BeritaController::class, 'update'])->name('admin.update_berita');
-    Route::get('hapus_berita/{id}', [BeritaController::class, 'destroy'])->name('admin.hapus_berita');
-    //------
+    Route::middleware(['auth'])->group(function () {
+        //kelola berita
+        Route::get('berita', [BeritaController::class, 'index'])->name('admin.berita');
+        Route::post('berita', [BeritaController::class, 'store'])->name('admin.berita');
+        Route::post('update_berita/{id}', [BeritaController::class, 'update'])->name('admin.update_berita');
+        Route::get('hapus_berita/{id}', [BeritaController::class, 'destroy'])->name('admin.hapus_berita');
+        //------
+    });
 
     //jafung
-    Route::prefix('jafung')->group(function () {
-
+    Route::prefix('jafung')->middleware(['auth', 'role:1'])->group(function () {
         Route::get('regulasi', [JafungController::class, 'regulasi'])->name('admin.regulasi');
         Route::post('regulasi', [JafungController::class, 'add_regulasi'])->name('admin.regulasi');
         Route::get('hapus_regulasi/{id}', [JafungController::class, 'hapus_regulasi'])->name('admin.hapus_regulasi');
@@ -88,7 +92,7 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
     });
 
     //about D3
-    Route::prefix('aboutd3')->group(function () {
+    Route::prefix('aboutd3')->middleware(['auth', 'role:1'])->group(function () {
 
 
         Route::get('renstra', [AboutController::class, 'renstra'])->name('admin.renstra');
@@ -101,5 +105,11 @@ Route::prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
         Route::get('struktur_organisasi', [AboutController::class, 'struktur_organisasi'])->name('admin.struktur_organisasi');
 
         Route::post('update_struktur_organisasi/{id}', [AboutController::class, 'update_struktur'])->name('admin.update_struktur_organisasi');
+    });
+
+    Route::prefix('bahan_rapat')->group(function () {
+        Route::get('/', [BahanRapatController::class, 'index'])->name('admin.bahan_rapat');
+        Route::post('/', [BahanRapatController::class, 'add_rapat'])->name('admin.bahan_rapat');
+        // Route::get('/', [BahanRapatController::class, 'index'])->name('admin.bahan_rapat');
     });
 });

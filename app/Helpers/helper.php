@@ -25,7 +25,6 @@ function asdep($angka)
 
     $asdep = "";
     if ($angka == 1) {
-
         $asdep = "Asisten Deputi Minyak dan Gas, Pertambangan, dan Petrokimia / Sekretaris Deputi";
     } elseif ($angka == 2) {
         $asdep = "Asisten Deputi Agro, Farmasi, dan Pariwisata";
@@ -35,8 +34,10 @@ function asdep($angka)
         $asdep = "Asisten Deputi Utilitas dan Industri Manufaktur";
     } elseif ($angka == 4) {
         $asdep = "Asisten Deputi Niaga dan Transportasi";
-    } else {
+    } elseif ($angka == 0) {
         $asdep = "Strukutr Secara Keseluruhan";
+    } else {
+        // $asdep = "Admin";
     }
 
 
@@ -66,4 +67,33 @@ function slugify($string)
     }
 
     return $string;
+}
+
+function bulanIndonesia($bulan)
+{
+    $namaBulan = [
+        1 => 'Januari',
+        2 => 'Februari',
+        3 => 'Maret',
+        4 => 'April',
+        5 => 'Mei',
+        6 => 'Juni',
+        7 => 'Juli',
+        8 => 'Agustus',
+        9 => 'September',
+        10 => 'Oktober',
+        11 => 'November',
+        12 => 'Desember'
+    ];
+
+    return $namaBulan[$bulan] ?? 'Bulan tidak valid';
+}
+
+function format_datetime($date)
+{
+    $tanggal = DateTime::createFromFormat('Y-m-d H:i:s', $date);
+    $tanggal_format = $tanggal->format('d F Y');
+    $waktu_format = $tanggal->format('H:i:s');
+
+    return ['tanggal' => $tanggal_format, 'waktu' => $waktu_format];
 }

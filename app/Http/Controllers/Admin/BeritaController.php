@@ -25,6 +25,10 @@ class BeritaController extends Controller
             $data['bt'] = Berita::find($_GET['id']);
         }
 
+        if (auth()->user()->role == 2) {
+            $data['all_berita'] = Berita::where('id_user', auth()->user()->id)->get();
+        }
+
         return view('Admin.Berita.content', $data);
     }
 
