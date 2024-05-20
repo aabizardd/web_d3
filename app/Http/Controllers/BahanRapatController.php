@@ -71,51 +71,11 @@ class BahanRapatController extends Controller
         return redirect()->route('admin.bahan_rapat')->with('success', 'Informasi rapat berhasil ditambahkan.');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $rapat = Rapat::find($id);
+        if ($rapat->delete()) {
+            return redirect()->back()->with('success', 'Rapat berhasil dihapus.');
+        }
     }
 }

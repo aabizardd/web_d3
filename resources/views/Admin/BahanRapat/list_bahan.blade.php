@@ -79,10 +79,15 @@
                                             Detail Bahan
                                         </a>
 
-                                        <a href="" class="btn btn-danger btn-sm">
-                                            <span class="fas fa-trash"></span>
-                                            Hapus
-                                        </a>
+                                        @if ($_GET['asdep'] == auth()->user()->asdep || auth()->user()->role == 1)
+                                            <a href="{{ route('admin.delete_rapat', $item->id) }}"
+                                                class="btn btn-danger btn-sm">
+                                                <span class="fas fa-trash"></span>
+                                                Hapus
+                                            </a>
+                                        @endif
+
+
 
                                     </td>
                                 </tr>

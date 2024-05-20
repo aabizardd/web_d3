@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Storage;
 
 function limit_text($text, $limit)
 {
@@ -32,7 +33,7 @@ function asdep($angka)
         $asdep = "Asisten Deputi Jasa Keuangan dan Industri Informasi";
     } elseif ($angka == 4) {
         $asdep = "Asisten Deputi Utilitas dan Industri Manufaktur";
-    } elseif ($angka == 4) {
+    } elseif ($angka == 5) {
         $asdep = "Asisten Deputi Niaga dan Transportasi";
     } elseif ($angka == 0) {
         $asdep = "Strukutr Secara Keseluruhan";
@@ -96,4 +97,40 @@ function format_datetime($date)
     $waktu_format = $tanggal->format('H:i:s');
 
     return ['tanggal' => $tanggal_format, 'waktu' => $waktu_format];
+}
+
+function get_user_picture()
+{
+
+
+    $img = "";
+
+    if (is_null(auth()->user()->foto)) {
+
+        $img = "https://img.freepik.com/free-photo/view-3d-practicing-lawyer_23-2151023412.jpg?t=st=1715838980~exp=1715842580~hmac=8a71a45132bce99431de567dba26ad2fc3f82a198f341ebc8fc25252100f02ee&w=740";
+    } else {
+        $img = Storage::url(auth()->user()->foto);
+    }
+
+    return $img;
+}
+
+function get_user()
+{
+
+    return auth()->user();
+}
+
+function role_info($role)
+{
+
+
+
+    if ($role == 1) {
+        $bag = "Super Admin";
+    } else {
+        $bag = "PIC Asdep";
+    }
+
+    return $bag;
 }

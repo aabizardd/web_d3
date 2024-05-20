@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\JafungController;
 use App\Http\Controllers\Admin\PenggunaController;
+use App\Http\Controllers\Admin\ProfilController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BahanRapatController;
 use App\Http\Controllers\FrontEndController;
@@ -110,6 +111,12 @@ Route::prefix('admin')->group(function () {
     Route::prefix('bahan_rapat')->group(function () {
         Route::get('/', [BahanRapatController::class, 'index'])->name('admin.bahan_rapat');
         Route::post('/', [BahanRapatController::class, 'add_rapat'])->name('admin.bahan_rapat');
-        // Route::get('/', [BahanRapatController::class, 'index'])->name('admin.bahan_rapat');
+        Route::get('delete_rapat/{id}', [BahanRapatController::class, 'destroy'])->name('admin.delete_rapat');
+    });
+
+    Route::prefix('profil')->group(function () {
+        Route::get('/', [ProfilController::class, 'index'])->name('admin.profil');
+        Route::post('update/{id}', [ProfilController::class, 'update'])->name('admin.update_profil');
+        // Route::get('delete_rapat/{id}', [BahanRapatController::class, 'destroy'])->name('admin.delete_rapat');
     });
 });

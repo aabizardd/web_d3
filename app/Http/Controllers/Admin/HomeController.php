@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Artikel;
 use App\Models\Berita;
+use App\Models\Rapat;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,12 +19,25 @@ class HomeController extends Controller
 
         // dd(auth()->user()->role);
 
-        $data = [
-            'ct_pengguna' => User::count(),
-            'ct_berita' => Berita::count(),
-            'ct_artikel' => Artikel::count(),
-            'ct_pic' => User::where('role', 2)->count(),
-        ];
+        if (auth()->user()->role == 1) {
+            $data = [
+                'ct_pengguna' => User::count(),
+                'ct_berita' => Berita::count(),
+                'ct_artikel' => Artikel::count(),
+                'ct_pic' => User::where('role', 2)->count(),
+            ];
+        } else {
+            $data = [
+                'ct_rapat' => Rapat::join('users', 'users.id', '=', 'rapat.id_user')
+                    ->where('users.asdep', auth()->user()->asdep)
+                    ->count(),
+                'ct_berita' => Berita::join('users', 'users.id', '=', 'berita.id_user')
+                    ->where('users.asdep', auth()->user()->asdep)
+                    ->count(),
+                'ct_artikel' => Artikel::count(),
+                'ct_pic' => User::where('asdep', auth()->user()->asdep)->count(),
+            ];
+        }
 
         return view('Admin.Home.content', $data);
     }
