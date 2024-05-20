@@ -134,3 +134,11 @@ function role_info($role)
 
     return $bag;
 }
+
+function get_date($type, $date)
+{
+
+    $hasil = date($type, strtotime($date));
+
+    return $hasil;
+}

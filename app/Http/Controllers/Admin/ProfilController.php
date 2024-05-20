@@ -69,7 +69,7 @@ class ProfilController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'foto' => 'nullable|image|max:5120', // maksimum 5MB
-            'password' => 'nullable|string|min:8'
+            'password' => 'nullable|string|min:6'
         ]);
 
         $user = User::findOrFail($id);

@@ -74,7 +74,8 @@
                                     <td>{{ $tgl['waktu'] }}</td>
                                     <td width=10>
 
-                                        <a href="" class="btn btn-info btn-sm">
+                                        <a href="{{ route('admin.detail_bahan', $item->id) }}"
+                                            class="btn btn-info btn-sm">
                                             <span class="fas fa-file-powerpoint"></span>
                                             Detail Bahan
                                         </a>

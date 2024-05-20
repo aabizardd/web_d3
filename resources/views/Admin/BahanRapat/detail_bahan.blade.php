@@ -41,21 +41,16 @@
                         <div class="d-inline">
 
 
-                            @if (!isset($_GET['asdep']) && !isset($_GET['page']))
-                                <h5>Folder Bahan Rapat</h5>
+                            @if (!isset($_GET['page']))
+                                <h5>Detail Bahan Rapat</h5>
                                 <span>
-                                    Pilih Bahan Rapat Deputi 3 di sini.
+                                    Lihat Detail Bahan Rapat Deputi 3 di sini.
                                 </span>
-                            @elseif (isset($_GET['asdep']) && !isset($_GET['page']))
-                                <h5>Daftar Bahan Rapat {{ asdep($_GET['asdep']) }}</h5>
-                                <span>
-                                    Daftar bahan rapat Asdep {{ $_GET['asdep'] }}.
-                                </span>
-                            @elseif (!isset($_GET['asdep']) && isset($_GET['page']))
+                            @elseif (isset($_GET['page']))
                                 @if ($_GET['page'] == 'tambah_bahan')
-                                    <h5>Tambah Informasi Rapat </h5>
+                                    <h5>Tambah Bahan Rapat </h5>
                                     <span>
-                                        Tambah informasi rapat
+                                        Tambah bahan rapat
                                     </span>
                                 @endif
                             @endif
@@ -81,6 +76,7 @@
                                 <a href="{{ route('admin.bahan_rapat') }}">Folder Bahan Rapat</a>
                             </li>
 
+
                             {{-- @if (!isset($_GET['asdep']))
                             @else
                                 @if ($_GET['asdep'])
@@ -91,17 +87,18 @@
                                 @endif
                             @endif --}}
 
-                            @if (!isset($_GET['asdep']) && !isset($_GET['page']))
-                            @elseif (isset($_GET['asdep']) && !isset($_GET['page']))
-                                &nbsp;/&nbsp;
+                            @if (!isset($_GET['page']))
+                                &nbsp;/&nbsp;...&nbsp;/&nbsp;
                                 <li class="breadcrumb-items">
-                                    <a href="">Daftar Bahan</a>
+                                    <a href="">Detail Bahan Rapat</a>
                                 </li>
-                            @elseif (!isset($_GET['asdep']) && isset($_GET['page']))
-                                &nbsp;/&nbsp;
-                                <li class="breadcrumb-items">
-                                    <a href="">Tambah Rapat</a>
-                                </li>
+                            @else
+                                @if ($_GET['page'] == 'tambah_bahan')
+                                    &nbsp;/&nbsp;...&nbsp;/&nbsp;
+                                    <li class="breadcrumb-items">
+                                        <a href="">Tambah Bahan Rapat</a>
+                                    </li>
+                                @endif
                             @endif
 
 
@@ -117,20 +114,15 @@
                 <div class="page-wrapper">
                     <div class="page-body">
 
-                        {{-- <button class="btn btn-danger mb-2">
-                            <i class="fas fa-arrow-left"></i> Kembali
-                        </button> --}}
 
-                        @if (!isset($_GET['asdep']) && !isset($_GET['page']))
-                            @include('Admin.BahanRapat.folder_bahan')
-                        @elseif (isset($_GET['asdep']) && !isset($_GET['page']))
-                            @include('Admin.BahanRapat.list_bahan')
-                        @elseif (!isset($_GET['asdep']) && isset($_GET['page']))
+                        @if (!isset($_GET['page']))
+                            @include('Admin.BahanRapat.detail_bahan_upd')
+                        @else
                             @if ($_GET['page'] == 'tambah_bahan')
-                                {{-- <h1>Ini tambah bahan</h1> --}}
-                                @include('Admin.BahanRapat.tambah_rapat')
+                                @include('Admin.BahanRapat.tambah_bahan_upd')
                             @endif
                         @endif
+
 
 
 
@@ -140,12 +132,6 @@
             </div>
         </div>
     </div>
-
-    <a href="?page=tambah_bahan" class="floating-icon hover-icon">
-        <img src="{{ asset('template/assets/logo/plus.png') }}" alt="" class="icon-image" width="50">
-    </a>
-
-
 @endsection
 
 @section('addScript')

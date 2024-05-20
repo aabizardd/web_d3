@@ -112,11 +112,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [BahanRapatController::class, 'index'])->name('admin.bahan_rapat');
         Route::post('/', [BahanRapatController::class, 'add_rapat'])->name('admin.bahan_rapat');
         Route::get('delete_rapat/{id}', [BahanRapatController::class, 'destroy'])->name('admin.delete_rapat');
+
+        Route::get('detail_bahan/{id}', [BahanRapatController::class, 'detail_bahan'])->name('admin.detail_bahan');
+
+        Route::post('update_rapat/{id}', [BahanRapatController::class, 'update_rapat'])->name('admin.update_rapat');
+
+        Route::post('store_bahan/{id}', [BahanRapatController::class, 'store_bahan'])->name('admin.store_bahan');
+        Route::get('hapus_bahan/{id}', [BahanRapatController::class, 'hapus_bahan'])->name('admin.hapus_bahan');
     });
 
     Route::prefix('profil')->group(function () {
         Route::get('/', [ProfilController::class, 'index'])->name('admin.profil');
         Route::post('update/{id}', [ProfilController::class, 'update'])->name('admin.update_profil');
-        // Route::get('delete_rapat/{id}', [BahanRapatController::class, 'destroy'])->name('admin.delete_rapat');
     });
 });
