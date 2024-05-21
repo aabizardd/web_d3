@@ -78,8 +78,12 @@ class ProfilController extends Controller
         $user->email = $request->email;
 
         if ($request->hasFile('foto')) {
-            Storage::delete($user->foto);
 
+            if ($user->foto != null) {
+
+                Storage::delete($user->foto);
+            }
+            // dd($user->foto);
             // Simpan foto baru
             $fotoPath = $request->file('foto')->store('public/foto_profil');
             $user->foto = $fotoPath;
