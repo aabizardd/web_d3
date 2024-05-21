@@ -13,13 +13,14 @@
             <h5 style="margin-left: 20px;margin-top: 7px;">Detail Bahan Rapat</h5>
         </div>
 
-
-        <div class="">
-            <a class="btn btn-primary" href="?page=tambah_bahan">
-                <i class="fas fa-plus"></i>
-                Tambah File Rapat
-            </a>
-        </div>
+        @if ($rapat->id_folder == get_user()->asdep || get_user()->role == 1)
+            <div class="">
+                <a class="btn btn-primary" href="?page=tambah_bahan">
+                    <i class="fas fa-plus"></i>
+                    Tambah File Rapat
+                </a>
+            </div>
+        @endif
 
 
 
@@ -52,7 +53,7 @@
                         <label for="">Nama Rapat</label>
                         <input class="form-control @error('nama_rapat') is-invalid @enderror" type="text"
                             name="nama_rapat" id="nama_rapat" placeholder="Nama Rapat" value="{{ $rapat->nama_rapat }}"
-                            required>
+                            required <?= $rapat->id_folder == get_user()->asdep ? '' : 'readonly' ?>>
 
                         <i class="text-danger" style="font-size: 12px">*Contoh: Rapat BBM
                             191/2014
@@ -69,7 +70,8 @@
                         <label for="">Tanggal Rapat</label>
                         <input class="form-control @error('tanggal_rapat') is-invalid @enderror" type="datetime-local"
                             name="tanggal_rapat" id="tanggal_rapat" placeholder="Tanggal Rapat"
-                            value="{{ $rapat->tanggal_rapat }}" required>
+                            value="{{ $rapat->tanggal_rapat }}" required
+                            <?= $rapat->id_folder == get_user()->asdep ? '' : 'readonly' ?>>
 
 
 
@@ -118,7 +120,9 @@
                         </div>
                     @endif
 
-                    <button class="btn btn-primary w-100 mt-4">Perbarui Informasi Rapat</button>
+                    @if ($rapat->id_folder == get_user()->asdep || get_user()->role == 1)
+                        <button class="btn btn-primary w-100 mt-4">Perbarui Informasi Rapat</button>
+                    @endif
 
                 </form>
 
@@ -163,11 +167,12 @@
                                             download>
                                             <span class="fas fa-download"></span> Unduh
                                         </a>
-
-                                        <a href="{{ route('admin.hapus_bahan', $item->id) }}"
-                                            class="btn btn-danger btn-sm">
-                                            <span class="fas fa-trash"></span> Hapus
-                                        </a>
+                                        @if ($rapat->id_folder == get_user()->asdep || get_user()->role == 1)
+                                            <a href="{{ route('admin.hapus_bahan', $item->id) }}"
+                                                class="btn btn-danger btn-sm">
+                                                <span class="fas fa-trash"></span> Hapus
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

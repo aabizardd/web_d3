@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BahanRapat;
 use App\Models\Berita;
 use App\Models\FileRapat;
 use App\Models\Folder;
@@ -47,7 +48,6 @@ class BahanRapatController extends Controller
 
             // dd($data['rapat']);
         }
-
 
         return view('Admin.BahanRapat.content', $data);
     }
@@ -138,7 +138,7 @@ class BahanRapatController extends Controller
         $bahanRapat->id_rapat = $request->id_rapat;
         $bahanRapat->save();
 
-        return redirect()->route('admin.detail_bahan', $id)->with('success', 'Bahan rapat berhasil ditambahkan.');
+        return redirect()->route('admin.detail_bahan', $request->id_rapat)->with('success', 'Bahan rapat berhasil ditambahkan.');
     }
 
     public function hapus_bahan($id)
@@ -154,6 +154,13 @@ class BahanRapatController extends Controller
 
         // Redirect ke halaman lain dengan pesan sukses
         return redirect()->back()->with('success', 'File rapat berhasil dihapus');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $bahan = FileRapat::where('nama_file', 'LIKE', "%$search%")->get();
+        return response()->json($bahan);
     }
 }
 

@@ -119,6 +119,8 @@ Route::prefix('admin')->group(function () {
 
         Route::post('store_bahan/{id}', [BahanRapatController::class, 'store_bahan'])->name('admin.store_bahan');
         Route::get('hapus_bahan/{id}', [BahanRapatController::class, 'hapus_bahan'])->name('admin.hapus_bahan');
+
+        Route::get('search', [BahanRapatController::class, 'search'])->name('admin.search');
     });
 
     Route::prefix('profil')->group(function () {
