@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\JafungController;
+use App\Http\Controllers\Admin\KontakController;
 use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\ProfilController;
 use App\Http\Controllers\AuthController;
@@ -126,5 +127,11 @@ Route::prefix('admin')->group(function () {
     Route::prefix('profil')->group(function () {
         Route::get('/', [ProfilController::class, 'index'])->name('admin.profil');
         Route::post('update/{id}', [ProfilController::class, 'update'])->name('admin.update_profil');
+    });
+
+
+    Route::prefix('kontak')->group(function () {
+        Route::get('/', [KontakController::class, 'index'])->name('admin.kontak');
+        // Route::post('update/{id}', [ProfilController::class, 'update'])->name('admin.update_profil');
     });
 });

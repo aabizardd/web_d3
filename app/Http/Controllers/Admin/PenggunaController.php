@@ -19,10 +19,10 @@ class PenggunaController extends Controller
             'pengguna' => User::all()
         ];
 
-        if(isset($_GET['id'])){
+        if (isset($_GET['id'])) {
             $data['pg'] = User::find($_GET['id']);
         }
-        
+
         return view('Admin.Pengguna.content', $data);
     }
 

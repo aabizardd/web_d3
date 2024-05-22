@@ -109,6 +109,15 @@
                 </li>
 
 
+                <li class="{{ Request::segment(2) == 'kontak' ? 'active' : '' }}">
+                    <a href="{{ route('admin.kontak') }}" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <img src="{{ asset('template/assets/logo/wa-logo.png') }}" width="20">
+                        </span>
+                        <span class="pcoded-mtext">Kontak KL</span>
+                    </a>
+                </li>
+
             </ul>
 
         </div>
