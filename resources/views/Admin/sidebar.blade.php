@@ -28,7 +28,7 @@
                     <li class="pcoded-hasmenu {{ Request::segment(2) == 'jafung' ? 'active pcoded-trigger' : '' }}">
                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                             <span class="pcoded-micon"><i class="far fa-comment"></i></span>
-                            <span class="pcoded-mtext">Forum Jafung</span>
+                            <span class="pcoded-mtext">Publikasi</span>
                         </a>
                         <ul class="pcoded-submenu">
 
@@ -37,11 +37,11 @@
                                     <span class="pcoded-mtext">Regulasi</span>
                                 </a>
                             </li>
-                            <li class="{{ Request::segment(3) == 'artikel' ? 'active' : '' }}">
+                            {{-- <li class="{{ Request::segment(3) == 'artikel' ? 'active' : '' }}">
                                 <a href="{{ route('admin.artikel') }}" class="waves-effect waves-dark">
                                     <span class="pcoded-mtext">Artikel</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="{{ Request::segment(3) == 'analis_kebijakan' ? 'active' : '' }}">
                                 <a href="{{ route('admin.analis_kebijakan') }}" class="waves-effect waves-dark">
                                     <span class="pcoded-mtext">Analis Kebijakan</span>

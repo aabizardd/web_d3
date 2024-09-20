@@ -54,11 +54,11 @@
                     </li>
 
                     <li>
-                        <a href="JavaScript:void(0)">Forum Jafung</a>
+                        <a href="JavaScript:void(0)">Publikasi</a>
                         <ul class="dropdown fs--1">
                             <li><a href="{{ route('analisis_kebijakan') }}">Analisis Kebijakan</a></li>
                             <li><a href="{{ route('regulasi') }}">Regulasi</a></li>
-                            <li><a href="{{ route('artikel') }}">Artikel</a></li>
+                            {{-- <li><a href="{{ route('artikel') }}">Artikel</a></li> --}}
                             <li><a href="{{ route('pustaka') }}">Pustaka</a></li>
                         </ul>
                     </li>

@@ -63,8 +63,13 @@ class FrontEndController extends Controller
 
     public function profil_deputi()
     {
+
+        $berita = Berita::limit(3)->get();
+
+
         $data = [
-            'profil' => ProfilDeputi::find(1)
+            'profil' => ProfilDeputi::find(1),
+            'berita' => $berita
         ];
 
         return view('FE.profil_deputi.main', $data);

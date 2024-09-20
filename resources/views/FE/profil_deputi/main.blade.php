@@ -60,4 +60,28 @@
         </div>
         <!--/.container-->
     </section>
+
+
+    <section class="background-102">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-center fs-2 fs-lg-3">Struktur Organisasi </h3>
+                    <hr class="short"
+                        data-zanim='{"from":{"opacity":0,"width":0},"to":{"opacity":1,"width":"4.20873rem"},"duration":0.8}'
+                        data-zanim-trigger="scroll" />
+                </div>
+            </div>
+
+            <div class="row mt-lg-6">
+
+
+
+
+
+            </div>
+            <!--/.row-->
+        </div>
+        <!--/.container-->
+    </section>
 @endsection

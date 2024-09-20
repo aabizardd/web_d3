@@ -30,7 +30,7 @@
 
                             <li class="mb-3">
                                 <span class="color-white" href="#"><b>Email</b></span>
-                                <p class="color-white">deputi32014@gmail.com</p>
+                                <p class="color-white">deputi3@ekon.go.id</p>
                             </li>
                         </ul>
                     </div>
