@@ -44,9 +44,30 @@
                     <input type="text" name="id_rapat" value="{{ $rapat->id }}" hidden>
 
                     <div class="form-group mb-3">
+                        <label for="">Pilih Jenis Input</label>
+                        <select class="form-control" id="inputType">
+                            <option value="file">Upload File</option>
+                            <option value="link">Input Link</option>
+                        </select>
+                    </div>
+
+                    <!-- Link Input (initially hidden) -->
+                    <div class="form-group mb-3" id="linkInput" style="display:none;">
+                        <label for="">Input Link</label>
+                        <input class="form-control @error('link') is-invalid @enderror" type="text" name="link"
+                            id="link" placeholder="Masukkan Link" value="{{ old('link') }}">
+
+                        @error('link')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mb-3" id="fileInput">
                         <label for="">Upload File</label>
                         <input class="form-control @error('file') is-invalid @enderror" type="file" name="file"
-                            id="file" placeholder="Nama File" value="{{ old('file') }}" required>
+                            id="file" placeholder="Nama File" value="{{ old('file') }}">
 
                         @error('file')
                             <div class="invalid-feedback">
@@ -118,3 +139,20 @@
 
     </div>
 </div>
+
+
+<script>
+    document.getElementById('inputType').addEventListener('change', function() {
+        var selected = this.value;
+        var fileInput = document.getElementById('fileInput');
+        var linkInput = document.getElementById('linkInput');
+
+        if (selected === 'file') {
+            fileInput.style.display = 'block';
+            linkInput.style.display = 'none';
+        } else if (selected === 'link') {
+            fileInput.style.display = 'none';
+            linkInput.style.display = 'block';
+        }
+    });
+</script>

@@ -163,16 +163,24 @@
                                     <td>{{ $item->keperluan }}</td>
                                     <td>{{ $item->catatan }}</td>
                                     <td>
-                                        <a href="{{ Storage::url($item->file) }}" class="btn btn-warning btn-sm"
-                                            download>
-                                            <span class="fas fa-download"></span> Unduh
-                                        </a>
+                                        @if ($item->file)
+                                            <a href="{{ Storage::url($item->file) }}" class="btn btn-warning btn-sm"
+                                                download>
+                                                <span class="fas fa-download"></span> Unduh
+                                            </a>
+                                        @else
+                                            <a href="{{ $item->link }}" class="btn btn-info btn-sm" target="__blank">
+                                                <span class="fas fa-link"></span> Buka Tautan
+                                            </a>
+                                        @endif
+
                                         @if ($rapat->id_folder == get_user()->asdep || get_user()->role == 1)
                                             <a href="{{ route('admin.hapus_bahan', $item->id) }}"
                                                 class="btn btn-danger btn-sm">
                                                 <span class="fas fa-trash"></span> Hapus
                                             </a>
                                         @endif
+
                                     </td>
                                 </tr>
                             @endforeach

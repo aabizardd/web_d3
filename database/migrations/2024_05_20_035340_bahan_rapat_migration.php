@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_file')->nullable();
             $table->longText('file')->nullable();
+            $table->longText('link')->nullable();
             $table->string('keperluan')->nullable();
             $table->longText('catatan')->nullable();
 

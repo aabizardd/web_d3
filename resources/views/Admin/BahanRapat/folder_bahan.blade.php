@@ -56,7 +56,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5>Cari Bahan Rapat (Shortcut)</h5>
-                <p style="color: red"><sup>*</sup>Pilih untuk download </p>
+                <p style="color: red"><sup>*</sup>Pilih bahan </p>
                 {{-- <a class="btn btn-primary" href="?page=tambah_berita">
             <i class="fas fa-plus"></i>
             Berita Baru
@@ -105,16 +105,29 @@
                                 $('#tambahan-data').html('');
                                 $.each(data, function(key, item) {
                                     // console.log(item.file)
-                                    var link = item.file;
-                                    var newUrl = link.replace('public/',
-                                        '/storage/');
-                                    console.log(newUrl)
-                                    // alert(penyimpanan)
-                                    $('#tambahan-data').append(
-                                        `<li>
+                                    if (item.file == null) {
+                                        // console.log('ok')
+                                        $('#tambahan-data').append(
+                                            `<li>
+                                            <a href ='` + item.link +
+                                            `' style = 'font-size: 12px' target='__blank'>` +
+                                            item.nama_file + ` (Link)</a></li>`);
+                                    }
+
+                                    if (item.link == null) {
+                                        // console.log('ok')
+                                        var link = item.file;
+                                        var newUrl = link.replace('public/',
+                                            '/storage/');
+                                        console.log(newUrl)
+                                        // alert(penyimpanan)
+                                        $('#tambahan-data').append(
+                                            `<li>
                                             <a href ='` + newUrl +
-                                        `' style = 'font-size: 12px' download>` +
-                                        item.nama_file + `</a></li>`);
+                                            `' style = 'font-size: 12px' download>` +
+                                            item.nama_file + ` (File)</a></li>`);
+                                    }
+
                                 });
                             }
                         }

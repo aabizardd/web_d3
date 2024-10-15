@@ -11,31 +11,38 @@
          <table id="order-table" class="table table-striped table-bordered nowrap">
              <thead>
                  <tr>
-                     <th>Strukur</th>
-                     <th>Asisten Deputi</th>
-                     <th>Tanggal Perubahan</th>
+                     <th>Nama Divisi</th>
+                     <th>Kepala Divisi</th>
                      <th>Aksi</th>
                  </tr>
              </thead>
              <tbody>
-                 @foreach ($renstra as $item)
+                 @foreach ($divisi as $item)
                      <tr>
-                         <td style="width: 300px">
-                             <img src="{{ Storage::url($item->gambar) }}" class="card-img" alt="{{ $item->gambar }}"
-                                 style="width: 100%;height: 250px;">
-                         </td>
-                         <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis;">
-                             {{ asdep($item->asdep) }}
+
+                         <td>
+                             {{ $item->nama_divisi }}
                          </td>
 
-                         <td style="width: 20px">{{ $item->updated_at }}</td>
-
+                         <td>
+                             {{ $item->kepala_divisi }}
+                         </td>
 
                          <td style="width: 10px">
 
-                             <a href="?page=update_struktur&id={{ $item->id }}" class="btn btn-warning btn-sm">
+                             <a href="?page=update_divisi&id={{ $item->id }}" class="btn btn-warning btn-sm">
                                  <i class="fas fa-pencil">
                                  </i> Update
+                             </a>
+
+                             <a href="?page=update_struktur&id={{ $item->id }}" class="btn btn-info btn-sm">
+                                 <i class="fas fa-info">
+                                 </i> Detail
+                             </a>
+
+                             <a href="{{ route('admin.delete_divisi', $item->id) }}" class="btn btn-danger btn-sm">
+                                 <i class="fas fa-trash">
+                                 </i> Delete
                              </a>
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Divisi;
 use App\Models\ProfilDeputi;
 use App\Models\Renstra;
 use App\Models\StrukturOrganisasi;
@@ -128,14 +129,14 @@ class AboutController extends Controller
     public function struktur_organisasi()
     {
 
-        $renstra = StrukturOrganisasi::all();
+        $divisi = Divisi::all();
 
         $data = [
-            'renstra' => $renstra
+            'divisi' => $divisi
         ];
 
         if (isset($_GET['id'])) {
-            $data['sok'] = StrukturOrganisasi::find($_GET['id']);
+            $data['sok'] = Divisi::find($_GET['id']);
         }
 
         return view('Admin.StrukturOrganisasi.data_struktur', $data);
@@ -180,5 +181,54 @@ class AboutController extends Controller
 
         // Redirect ke halaman lain dengan pesan sukses
         return redirect()->route('admin.struktur_organisasi')->with('success', 'Struktur Organisasi berhasil diperbarui');
+    }
+
+    public function tambah_divisi(Request $request)
+    {
+
+        // Validasi data yang dikirimkan melalui form
+        $validatedData = $request->validate([
+            'nama_divisi' => 'required|string|max:255',
+            'kepala_divisi' => 'required|string|max:255',
+        ]);
+
+        // Simpan data ke database
+        Divisi::create([
+            'nama_divisi' => $validatedData['nama_divisi'],
+            'kepala_divisi' => $validatedData['kepala_divisi'],
+        ]);
+
+        // Redirect atau response sesuai kebutuhan
+        return redirect()->route('admin.struktur_organisasi')->with('success', 'Data Divisi berhasil disimpan');
+    }
+
+    public function delete_divisi($id)
+    {
+
+        $divisi = Divisi::find($id);
+
+        $divisi->delete();
+
+        return redirect()->route('admin.struktur_organisasi')->with('success', 'Data Divisi berhasil dihapus');
+    }
+
+    public function ubah_divisi(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'nama_divisi' => 'required|string|max:255',
+            'kepala_divisi' => 'required|string|max:255',
+        ]);
+
+        // Cari data divisi berdasarkan ID
+        $divisi = Divisi::findOrFail($id);
+
+        // Update data divisi
+        $divisi->update([
+            'nama_divisi' => $validatedData['nama_divisi'],
+            'kepala_divisi' => $validatedData['kepala_divisi'],
+        ]);
+
+        // Redirect atau response sesuai kebutuhan
+        return redirect()->route('admin.struktur_organisasi')->with('success', 'Data Divisi berhasil diperbarui');
     }
 }

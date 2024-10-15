@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StrukturOrganisasiSeeder::class);
         $this->call(FolderSeeder::class);
         $this->call(KontakSeeder::class);
+        $this->call(DivisiSeeder::class);
     }
 }

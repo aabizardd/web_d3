@@ -7,41 +7,20 @@
          </div>
      @endif
 
-     <form action="{{ route('admin.update_struktur_organisasi', $_GET['id']) }}" method="POST"
-         enctype="multipart/form-data">
+     <form action="{{ route('admin.tambah_divisi') }}" method="POST" enctype="multipart/form-data">
          @csrf
 
          <div class="row">
-
-             <div class="col-lg-8">
-
-                 <img src="{{ Storage::url($sok->gambar) }}" alt="" width="100%" height="450"
-                     id="preview_img" class="mb-4" style="border-radius: 10px">
-
-
-
-
-             </div>
-
-             <div class="col-lg-4">
+             <div class="col-12">
 
                  <div class="form-group mb-3">
-                     <label for="">Nama Asdep</label>
-                     <input class="form-control" type="text" disabled value="{{ asdep($sok->asdep) }}">
-
-
+                     <label for="">Nama Divisi</label>
+                     <input class="form-control" type="text" name="nama_divisi" id="nama_divisi" required>
                  </div>
 
                  <div class="form-group mb-3">
-                     <label for="">Stuktur</label>
-                     <input class="form-control @error('gambar') is-invalid @enderror" type="file" name="gambar"
-                         id="foto" placeholder="gambar" accept="image/png, image/gif, image/jpeg">
-
-                     @error('gambar')
-                         <div class="invalid-feedback">
-                             {{ $message }}
-                         </div>
-                     @enderror
+                     <label for="">Nama Kepala Divisi</label>
+                     <input class="form-control" type="text" name="kepala_divisi" id="kepala_divisi" required>
                  </div>
 
 
@@ -52,7 +31,7 @@
          </div>
 
          <button class="btn btn-primary w-100">
-             Ubah Struktur Organisasi
+             Tambah Divisi
          </button>
 
      </form>

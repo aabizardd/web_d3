@@ -35,10 +35,15 @@
                                     Lihat data Struktur Organisasi Deputi 3 anda di sini.
                                 </span>
                             @else
-                                @if ($_GET['page'] == 'update_struktur')
-                                    <h5>Ubah Struktur Organisasi</h5>
+                                @if ($_GET['page'] == 'update_divisi')
+                                    <h5>Ubah Divisi</h5>
                                     <span>
-                                        Ubah data Struktur Organisasi Deputi 3 anda di sini.
+                                        Ubah data Divisi Deputi 3 di sini.
+                                    </span>
+                                @elseif ($_GET['page'] == 'tambah_divisi')
+                                    <h5>Tambah Divisi Baru</h5>
+                                    <span>
+                                        Tambah data divisi Deputi 3 di sini.
                                     </span>
                                 @endif
                             @endif
@@ -66,10 +71,15 @@
 
                             @if (!isset($_GET['page']))
                             @else
-                                @if ($_GET['page'] == 'update_struktur')
+                                @if ($_GET['page'] == 'update_divisi')
                                     &nbsp;/&nbsp;
                                     <li class="breadcrumb-items">
-                                        <a href="">Ubah Struktur</a>
+                                        <a href="">Ubah Divisi</a>
+                                    </li>
+                                @elseif ($_GET['page'] == 'tambah_divisi')
+                                    &nbsp;/&nbsp;
+                                    <li class="breadcrumb-items">
+                                        <a href="">Tambah Divisi</a>
                                     </li>
                                 @endif
                             @endif
@@ -87,15 +97,19 @@
                 <div class="page-wrapper">
                     <div class="page-body">
 
-                        {{-- <button class="btn btn-danger mb-2">
-                            <i class="fas fa-arrow-left"></i> Kembali
-                        </button> --}}
+                        <button class="btn btn-danger mb-2">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
 
                         <div class="card">
                             <div class="card-header d-flex justify-content-between align-items-center">
-
-                                <h5>Struktur Organisasi</h5>
-
+                                <h5>Struktur Oragnisasi</h5>
+                                @if (!isset($_GET['page']))
+                                    <a class="btn btn-primary" href="?page=tambah_divisi">
+                                        <i class="fas fa-plus"></i>
+                                        Divisi Baru
+                                    </a>
+                                @endif
                             </div>
 
 
@@ -104,8 +118,10 @@
                             @if (!isset($_GET['page']))
                                 @include('Admin.StrukturOrganisasi.list_data')
                             @else
-                                @if ($_GET['page'] == 'update_struktur')
-                                    @include('Admin.StrukturOrganisasi.update_data')
+                                @if ($_GET['page'] == 'update_divisi')
+                                    @include('Admin.StrukturOrganisasi.update_divisi')
+                                @elseif($_GET['page'] == 'tambah_divisi')
+                                    @include('Admin.StrukturOrganisasi.tambah_divisi')
                                 @endif
                             @endif
 

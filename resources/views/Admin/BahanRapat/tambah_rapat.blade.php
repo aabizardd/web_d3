@@ -12,8 +12,6 @@
 
             <div class="row">
 
-
-
                 <div class="col-lg-6">
 
                     <img src="https://indooffice.co.id/wp-content/uploads/2023/05/Mengoptimalkan-Ruang-Rapat-untuk-Meningkatkan-Efektivitas-Rapat-Bisnis.png"

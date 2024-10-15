@@ -73,6 +73,8 @@ class BahanRapatController extends Controller
         return redirect()->route('admin.bahan_rapat')->with('success', 'Informasi rapat berhasil ditambahkan.');
     }
 
+
+
     public function destroy($id)
     {
         $rapat = Rapat::find($id);
@@ -111,7 +113,6 @@ class BahanRapatController extends Controller
         $rapat->tanggal_rapat = $request->tanggal_rapat;
         $rapat->id_folder = $request->id_folder;
 
-
         $rapat->save();
 
         return redirect()->back()->with('success', 'Informasi rapat berhasil diperbarui.');
@@ -122,21 +123,40 @@ class BahanRapatController extends Controller
 
         // dd($id);
         $request->validate([
-            'file' => 'required|file|max:20048',
+            'file' => $request->inputType === 'file' ? 'required|file|max:20048' : 'nullable',
+            // Jika memilih link, link harus diisi
+            'link' => $request->inputType === 'link' ? 'required' : 'nullable',
             'nama_file' => 'required|string|max:255',
             'keperluan' => 'required|string|max:255',
 
         ]);
 
-        $filePath = $request->file('file')->store('public/file_bahan_asdep_' . $id);
 
         $bahanRapat = new FileRapat();
         $bahanRapat->nama_file = $request->nama_file;
         $bahanRapat->keperluan = $request->keperluan;
         $bahanRapat->catatan = $request->catatan;
-        $bahanRapat->file = $filePath;
+
         $bahanRapat->id_rapat = $request->id_rapat;
+
+
+        // dd($request->link);
+        // Cek apakah inputType adalah file atau link
+        if (!is_null($request->file)) {
+            // Jika file diunggah, simpan file
+            $filePath = $request->file('file')->store('public/file_bahan_asdep_' . $id);
+            $bahanRapat->file = $filePath;
+        } elseif (!is_null($request->link)) {
+            // Jika link dimasukkan, simpan link sebagai file path
+            // dd('ok');
+            $bahanRapat->link = $request->link;
+            // dd($request->link);
+        }
         $bahanRapat->save();
+
+        // $filePath = $request->file('file')->store('public/file_bahan_asdep_' . $id);
+
+        // $bahanRapat->file = $filePath;
 
         return redirect()->route('admin.detail_bahan', $request->id_rapat)->with('success', 'Bahan rapat berhasil ditambahkan.');
     }
@@ -146,8 +166,11 @@ class BahanRapatController extends Controller
         // Temukan berita berdasarkan ID
         $bahan = FileRapat::findOrFail($id);
 
-        // Hapus foto dari penyimpanan
-        Storage::delete($bahan->file);
+        // Cek apakah file tidak null dan ada dalam penyimpanan
+        if ($bahan->file && Storage::exists($bahan->file)) {
+            // Hapus file dari penyimpanan
+            Storage::delete($bahan->file);
+        }
 
         // Hapus berita dari database
         $bahan->delete();

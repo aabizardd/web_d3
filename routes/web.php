@@ -107,11 +107,22 @@ Route::prefix('admin')->group(function () {
         Route::get('struktur_organisasi', [AboutController::class, 'struktur_organisasi'])->name('admin.struktur_organisasi');
 
         Route::post('update_struktur_organisasi/{id}', [AboutController::class, 'update_struktur'])->name('admin.update_struktur_organisasi');
+
+
+        Route::post('tambah_divisi', [AboutController::class, 'tambah_divisi'])->name('admin.tambah_divisi');
+
+        Route::post('ubah_divisi/{id}', [AboutController::class, 'ubah_divisi'])->name('admin.ubah_divisi');
+
+        Route::get('delete_divisi/{id}', [AboutController::class, 'delete_divisi'])->name('admin.delete_divisi');
     });
+
+
 
     Route::prefix('bahan_rapat')->group(function () {
         Route::get('/', [BahanRapatController::class, 'index'])->name('admin.bahan_rapat');
+
         Route::post('/', [BahanRapatController::class, 'add_rapat'])->name('admin.bahan_rapat');
+
         Route::get('delete_rapat/{id}', [BahanRapatController::class, 'destroy'])->name('admin.delete_rapat');
 
         Route::get('detail_bahan/{id}', [BahanRapatController::class, 'detail_bahan'])->name('admin.detail_bahan');
