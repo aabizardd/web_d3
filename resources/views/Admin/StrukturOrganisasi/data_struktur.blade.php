@@ -45,6 +45,22 @@
                                     <span>
                                         Tambah data divisi Deputi 3 di sini.
                                     </span>
+                                    </span>
+                                @elseif ($_GET['page'] == 'list_pegawai')
+                                    <h5>List Pegawai Asisten Deputi {{ $_GET['id'] }}</h5>
+                                    <span>
+                                        Daftar pegawai Asdep {{ $_GET['id'] }}.
+                                    </span>
+                                @elseif ($_GET['page'] == 'tambah_pegawai')
+                                    <h5>Tambah Pegawai Asisten Deputi {{ $_GET['asdep'] }}</h5>
+                                    <span>
+                                        Tambah pegawai Asdep {{ $_GET['asdep'] }}.
+                                    </span>
+                                @elseif($_GET['page'] == 'update_pegawai')
+                                    <h5>Update Pegawai </h5>
+                                    <span>
+                                        Update pegawai.
+                                    </span>
                                 @endif
                             @endif
 
@@ -81,6 +97,21 @@
                                     <li class="breadcrumb-items">
                                         <a href="">Tambah Divisi</a>
                                     </li>
+                                @elseif ($_GET['page'] == 'list_pegawai')
+                                    &nbsp;/&nbsp;
+                                    <li class="breadcrumb-items">
+                                        <a href="">Daftar Pegawai</a>
+                                    </li>
+                                @elseif ($_GET['page'] == 'tambah_pegawai')
+                                    &nbsp;/&nbsp;
+                                    <li class="breadcrumb-items">
+                                        <a href="">Tambah Pegawai</a>
+                                    </li>
+                                @elseif($_GET['page'] == 'update_pegawai')
+                                    &nbsp;/&nbsp;
+                                    <li class="breadcrumb-items">
+                                        <a href="">Update Pegawai</a>
+                                    </li>
                                 @endif
                             @endif
 
@@ -97,22 +128,25 @@
                 <div class="page-wrapper">
                     <div class="page-body">
 
-                        <button class="btn btn-danger mb-2">
-                            <i class="fas fa-arrow-left"></i>
-                        </button>
+
 
                         <div class="card">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <h5>Struktur Oragnisasi</h5>
+                                <h5>Struktur Oragnisasi / Kepegawaian</h5>
                                 @if (!isset($_GET['page']))
                                     <a class="btn btn-primary" href="?page=tambah_divisi">
                                         <i class="fas fa-plus"></i>
                                         Divisi Baru
                                     </a>
+                                @else
+                                    @if ($_GET['page'] == 'list_pegawai')
+                                        <a class="btn btn-primary" href="?page=tambah_pegawai&asdep={{ $_GET['id'] }}">
+                                            <i class="fas fa-plus"></i>
+                                            Pegawai Baru
+                                        </a>
+                                    @endif
                                 @endif
                             </div>
-
-
 
 
                             @if (!isset($_GET['page']))
@@ -122,6 +156,17 @@
                                     @include('Admin.StrukturOrganisasi.update_divisi')
                                 @elseif($_GET['page'] == 'tambah_divisi')
                                     @include('Admin.StrukturOrganisasi.tambah_divisi')
+                                @elseif($_GET['page'] == 'list_pegawai')
+                                    @php
+                                        $data = [
+                                            'id' => 1,
+                                        ];
+                                    @endphp
+                                    @include('Admin.StrukturOrganisasi.list_pegawai', $data)
+                                @elseif($_GET['page'] == 'tambah_pegawai')
+                                    @include('Admin.StrukturOrganisasi.tambah_pegawai')
+                                @elseif($_GET['page'] == 'update_pegawai')
+                                    @include('Admin.StrukturOrganisasi.update_pegawai')
                                 @endif
                             @endif
 

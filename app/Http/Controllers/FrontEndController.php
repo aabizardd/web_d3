@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AnalisKebijakan;
 use App\Models\Artikel;
 use App\Models\Berita;
+use App\Models\Pegawai;
 use App\Models\ProfilDeputi;
 use App\Models\Pustaka;
 use App\Models\Regulasi;
@@ -50,19 +51,61 @@ class FrontEndController extends Controller
     public function struktur_organisasi()
     {
 
-        if (!isset($_GET['asdep'])) {
+        if (isset($_GET['atasan'])) {
 
-            $data['struktur'] = StrukturOrganisasi::find(1);
-        } else {
-            // $asdep = $_GET['asdep'] + 1;
-            $data['struktur'] = StrukturOrganisasi::find($_GET['asdep'] + 1);
+            // $this->detail_atasan($_GET['atasan']);
+            return redirect('struktur_organisasi/detail/' . $_GET['atasan']);
+            // dd();
         }
+
+        $asdep = Pegawai::where('jabatan', 'like', 'Asisten Deputi' . '%')->orderBy('id_divisi', 'ASC')->get();
+        $deputi = Pegawai::where('nama_pegawai', 'Elen Setiadi')->first();
+        $sesdep = Pegawai::where('nama_pegawai', 'Desi Zulfiani')->first();
+
+        $data = [
+            'asdep' => $asdep,
+            'deputi' => $deputi,
+            'sesdep' => $sesdep,
+        ];
 
         return view('FE.struktur_organisasi.main', $data);
     }
 
+    public function detail_atasan($atasan)
+    {
+
+        // dd($atasan);
+
+        if ($atasan == 'deputi') {
+            $bagian = Pegawai::where('nama_pegawai', 'Elen Setiadi')->first();
+        } elseif ($atasan == 'sesdep') {
+            $bagian = Pegawai::where('nama_pegawai', 'Desi Zulfiani')->first();
+
+            $data['pegawainya'] = Pegawai::where('id_divisi', 98)->whereNot('jabatan', 'like', 'Sekretaris Deputi' . '%')->get();
+        } else {
+
+            // dd(substr($atasan, 5, 6));
+
+            $asdep = (int) substr($atasan, 5, 6);
+
+            $bagian = Pegawai::where('id_divisi', $asdep)->where('jabatan', 'like', 'Asisten Deputi' . '%')->first();
+
+            $data['pegawainya'] = Pegawai::where('id_divisi', operator: $asdep)->whereNot('jabatan', 'like', 'Asisten Deputi' . '%')->get();
+        }
+
+
+
+
+
+        $data['bagian'] = $bagian;
+
+        return view('FE.struktur_organisasi.detail_bos', $data);
+    }
+
     public function profil_deputi()
     {
+
+
 
         $berita = Berita::limit(3)->get();
 

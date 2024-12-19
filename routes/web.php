@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProfilController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BahanRapatController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\PegawaiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,13 @@ Route::get('renstra', [FrontEndController::class, 'renstra'])->name('renstra');
 
 Route::get('profil_deputi', [FrontEndController::class, 'profil_deputi'])->name('profil_deputi');
 
+
 Route::get('struktur_organisasi', [FrontEndController::class, 'struktur_organisasi'])->name('struktur_organisasi');
+
+Route::get('struktur_organisasi/detail/{atasan}', [FrontEndController::class, 'detail_atasan'])->name('struktur_organisasi.detail');
+
+
+
 
 Route::get('berita', [FrontEndController::class, 'berita'])->name('berita');
 Route::get('berita/{id}/{slug}', [FrontEndController::class, 'detail_berita'])->name('detail_berita');
@@ -143,6 +150,22 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('kontak')->group(function () {
         Route::get('/', [KontakController::class, 'index'])->name('admin.kontak');
-        // Route::post('update/{id}', [ProfilController::class, 'update'])->name('admin.update_profil');
+
+        Route::post('store', [KontakController::class, 'store'])->name('admin.kontak.store');
+
+        Route::delete('destroy/{id}', [KontakController::class, 'destroy'])->name('admin.kontak.destroy');
+
+        Route::post('update/{id}', [KontakController::class, 'update'])->name('admin.kontak.update');
+    });
+
+    Route::prefix('pegawai')->middleware(['auth', 'role:1'])->group(function () {
+
+
+        Route::post('tambah', [PegawaiController::class, 'store'])->name('admin.pegawai.tambah');
+
+
+        Route::post('update/{id}', [PegawaiController::class, 'update'])->name('admin.pegawai.update');
+
+        Route::delete('hapus/{id}/{asdep}', [PegawaiController::class, 'destroy'])->name('admin.pegawai.hapus');
     });
 });

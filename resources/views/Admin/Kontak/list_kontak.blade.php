@@ -48,13 +48,18 @@
                             <td>{{ $item->divisi }}</td>
                             <td>{{ $item->jabatan }}</td>
                             <td>
-                                <a href="?page=ubah_kontak&id={{ $item->id }}" class="btn btn-warning btn-sm">
+                                <a href="?page=ubah_kontak&id={{ $item->id }}"
+                                    class="btn btn-warning btn-sm w-100 mb-2">
                                     <i class="fas fa-pencil"></i> Edit
                                 </a>
 
-                                <a href="" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i> Hapus
-                                </a>
+                                <form action="{{ route('admin.kontak.destroy', $item->id) }}" method="POST"
+                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus kontak ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm w-100"><i
+                                            class="fas fa-trash"></i> Hapus</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

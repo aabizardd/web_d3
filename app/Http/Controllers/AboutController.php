@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Divisi;
+use App\Models\Pegawai;
 use App\Models\ProfilDeputi;
 use App\Models\Renstra;
 use App\Models\StrukturOrganisasi;
@@ -137,6 +138,14 @@ class AboutController extends Controller
 
         if (isset($_GET['id'])) {
             $data['sok'] = Divisi::find($_GET['id']);
+        }
+
+        if (isset($_GET['page']) && $_GET['page'] == "list_pegawai") {
+            $data['list_pegawai'] = Pegawai::where('id_divisi', $_GET['id'])->get();
+        }
+
+        if (isset($_GET['page']) && $_GET['page'] == "update_pegawai") {
+            $data['pegawai'] = Pegawai::find($_GET['id']);
         }
 
         return view('Admin.StrukturOrganisasi.data_struktur', $data);

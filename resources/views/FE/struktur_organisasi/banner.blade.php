@@ -1,15 +1,3 @@
-@php
-
-    $keterangan = '';
-
-    if (isset($_GET['asdep'])) {
-        if ($_GET['asdep'] == 1) {
-            $keterangan = 'Asisten Deputi Minyak dan Gas, Pertambangan, dan Petrokimia / Sekretaris Deputi';
-        }
-    }
-
-@endphp
-
 <section style="margin-top: -120px; height: 450px">
     <div>
         <div class="background-holder overlay"

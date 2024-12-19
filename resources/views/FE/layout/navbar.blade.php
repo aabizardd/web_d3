@@ -17,7 +17,7 @@
                         <a href="/">Beranda</a>
                     </li>
                     <li>
-                        <a href="JavaScript:void(0)">Tentang D3</a>
+                        <a href="JavaScript:void(0)">Tentang D4</a>
                         <ul class="dropdown fs--1">
                             <li><a href="{{ route('tugas') }}">Tugas dan Fungsi</a></li>
                             <li><a href="{{ route('renstra') }}">Renstra</a></li>
@@ -25,29 +25,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="JavaScript:void(0)">Struktur Organisasi</a>
-                        <ul class="dropdown fs--1">
-                            <li>
-                                <a href="{{ route('struktur_organisasi') }}">Struktur Organisasi</a>
-                            </li>
-                            <li><a href="{{ route('struktur_organisasi') }}?asdep=1">Asisten Deputi Minyan dan Gas,
-                                    Pertambangan, dan Petrokimia /
-                                    Sekretaris Deputi</a></li>
-
-                            <li><a href="{{ route('struktur_organisasi') }}?asdep=2">Asisten Deputi Agro,
-                                    Farmasi, dan Pariwisata</a></li>
-
-                            <li><a href="{{ route('struktur_organisasi') }}?asdep=3">Asisten Deputi Jasa Keuangan dan
-                                    Industri Informasi</a></li>
-
-                            <li><a href="{{ route('struktur_organisasi') }}?asdep=4">Asisten Deputi Utilitas dan
-                                    Industri Manufaktur
-                                </a></li>
-
-                            <li><a href="{{ route('struktur_organisasi') }}?asdep=5">Asisten Deputi Niaga dan
-                                    Transportasi
-                                </a></li>
-                        </ul>
+                        <a href="{{ route('struktur_organisasi') }}">Struktur Organisasi</a>
                     </li>
                     <li>
                         <a href="{{ route('berita') }}">Berita</a>

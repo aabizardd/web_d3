@@ -1,28 +1,3 @@
-@php
-
-    $gambar = 'struktur_organisasi_deputi3.png';
-
-    if (isset($_GET['asdep'])) {
-        // $gambar = $_GET['asdep'];
-        if ($_GET['asdep'] == 1) {
-            $keterangans = 'Asisten Deputi Minyak dan Gas, Pertambangan, dan Petrokimia / Sekretaris Deputi';
-            $gambar = 'struktur_asdep1.png';
-        } elseif ($_GET['asdep'] == 2) {
-            $keterangans = 'Asisten Deputi Agro, Farmasi, dan Pariwisata';
-            $gambar = 'struktur_asdep2.png';
-        } elseif ($_GET['asdep'] == 3) {
-            $keterangans = 'Asisten Deputi Jasa Keuangan dan Industri Informasi';
-            $gambar = 'struktur_asdep3.png';
-        } elseif ($_GET['asdep'] == 4) {
-            $keterangans = 'Asisten Deputi Utilitas dan Industri Manufaktur';
-            $gambar = 'struktur_asdep4.png';
-        } else {
-            $keterangans = 'Asisten Deputi Niaga dan Transportasi';
-            $gambar = 'struktur_asdep5.png';
-        }
-    }
-
-@endphp
 <section class="background-106">
     <div class="container">
         <div class="row mb-6">
@@ -40,11 +15,76 @@
                     data-zanim-trigger="scroll" />
             </div>
         </div>
+
+
+        <style>
+            .hover-img:hover {
+                transform: translateY(-10px);
+                /* Geser ke atas saat di-hover */
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+                /* Tambahkan bayangan saat di-hover */
+            }
+        </style>
+
+
         <div class="row">
-            <div class="col-lg-12">
-                <img src="{{ Storage::url($struktur->gambar) }}" class="img-fluid" alt="" srcset=""
-                    style="border-radius: 30px;width: 100%;height: 800px;" />
+            <div class="col-12">
+                <center>
+                    <a href="{{ route('struktur_organisasi', ['atasan' => 'deputi']) }}" class="hover-img"
+                        style="position: relative; display: inline-block;">
+                        <img src="{{ asset('storage/' . $deputi->foto_pegawai) }}" alt="" width="400"
+                            height="400" style="border: solid 8px #03435F; border-radius: 15px; z-index: 1;">
+                        <div class="info bg-warning p-2"
+                            style="width: 450px; border-radius: 10px; position: absolute; top: 350px; left: 50%; transform: translateX(-50%); z-index: 2;">
+                            <h4>{{ $deputi->nama_pegawai }}</h4>
+                            <h6 style="font-size: 15px">{{ $deputi->jabatan }}</h6>
+                        </div>
+                    </a>
+                </center>
             </div>
+
+            <div class="col-12" style="margin-top: 150px">
+                <center>
+                    <a href="{{ route('struktur_organisasi', ['atasan' => 'sesdep']) }}" class="hover-img"
+                        style="position: relative; display: inline-block;">
+                        <img src="{{ asset('storage/' . $sesdep->foto_pegawai) }}" alt="" width="250"
+                            height="250" style="border: solid 5px #03435F; border-radius: 10px; z-index: 1;">
+                        <div class="info bg-warning p-2"
+                            style="width: 350px; border-radius: 10px; position: absolute; top: 200px; left: 50%; transform: translateX(-50%); z-index: 2;">
+                            <h5>{{ $sesdep->nama_pegawai }}</h5>
+                            <h6>{{ $sesdep->jabatan }}</h6>
+                        </div>
+                    </a>
+                </center>
+            </div>
+
+            <div class="row">
+                @php
+                    $no = 1;
+                @endphp
+                @foreach ($asdep as $item)
+                    <div class="col-lg-4" style="margin-top: 80px">
+                        <center>
+
+                            <a href="{{ route('struktur_organisasi', ['atasan' => 'asdep' . $no++]) }}"
+                                class="hover-img" style="position: relative; display: inline-block;">
+                                <img src="{{ asset('storage/' . $item->foto_pegawai) }}" alt="" width="250"
+                                    height="250" style="border: solid 5px #03435F; border-radius: 10px; z-index: 1;">
+                                <div class="info bg-warning p-2"
+                                    style="width: 350px; border-radius: 10px; position: absolute; top: 180px; left: 50%; transform: translateX(-50%); z-index: 2;">
+                                    <h5>{{ $item->nama_pegawai }}</h5>
+                                    <h6 style="font-size: 12px">{{ $item->jabatan }}</h6>
+                                </div>
+                            </a>
+
+                        </center>
+                    </div>
+                @endforeach
+            </div>
+
+
+
+
         </div>
         <!--/.row-->
     </div>

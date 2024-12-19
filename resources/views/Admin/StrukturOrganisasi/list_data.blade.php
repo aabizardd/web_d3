@@ -35,7 +35,7 @@
                                  </i> Update
                              </a>
 
-                             <a href="?page=update_struktur&id={{ $item->id }}" class="btn btn-info btn-sm">
+                             <a href="?page=list_pegawai&id={{ $item->id }}" class="btn btn-info btn-sm">
                                  <i class="fas fa-info">
                                  </i> Detail
                              </a>

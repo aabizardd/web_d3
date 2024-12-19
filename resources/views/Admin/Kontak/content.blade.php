@@ -41,9 +41,9 @@
                                         Tambah data kontak KL / Badan Usaha di sini.
                                     </span>
                                 @elseif ($_GET['page'] == 'ubah_kontak')
-                                    <h5>Ubah Pengguna Aplikasi</h5>
+                                    <h5>Ubah Kontak</h5>
                                     <span>
-                                        Ubah data akun pengguna pemakai Aplikasi anda di sini.
+                                        Ubah data kontak KL / Badan Usaha di sini
                                     </span>
                                 @endif
                             @endif
@@ -76,7 +76,7 @@
                                 @elseif ($_GET['page'] == 'ubah_kontak')
                                     &nbsp;/&nbsp;
                                     <li class="breadcrumb-items">
-                                        <a href="">Ubah Pengguna</a>
+                                        <a href="">Ubah Kontak</a>
                                     </li>
                                 @endif
                             @endif
@@ -104,7 +104,7 @@
                             @if ($_GET['page'] == 'tambah_kontak')
                                 @include('Admin.Kontak.tambah_kontak')
                             @elseif ($_GET['page'] == 'ubah_kontak')
-                                @include('Admin.Pengguna.ubah_pengguna')
+                                @include('Admin.Kontak.ubah_kontak')
                             @endif
                         @endif
 
